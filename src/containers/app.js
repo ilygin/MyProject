@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../blocks/header';
 import ListCourses from "./listCourse";
-//import LoginForm from './mainPage/LoginForm';
+import LoginForm from '../blocks/loginForm';
 //import PersonalAccount from './mainPage/PersonalAccount';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
@@ -23,6 +23,7 @@ class App extends React.Component {
                 <div className = "container" >
                     <div className = "row main-page-row my-4" >
                         <ListCourses fetchCourses={fetchCourses} courses={courses}/>
+                        <LoginForm />
                     </div>
                 </div>
             </div>
