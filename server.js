@@ -17,7 +17,7 @@ const knex = require('knex')({
         host : '127.0.0.1',
         user : 'root',
         password : 'root',
-        database : 'zw_test'
+        database : 'zeroweb'
     }
 });
 
@@ -29,7 +29,7 @@ app.use(webpackDevMiddleware(compiler));
 app.use(express.static(path.join(__dirname, 'dist')));
 
 
-//require('./routes')(app, knex);
+require('./routes')(app, knex);
 
 //список курсо
 
