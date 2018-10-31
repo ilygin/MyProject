@@ -4,7 +4,8 @@ const path = require('path');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const session = require("express-session");
 const bodyParser = require('body-parser');
-
+const passport = require("./config/passport");
+const db = require('./models');
 
 const config = require('./webpack.config.js');
 const compiler = webpack(config);
@@ -17,7 +18,7 @@ const knex = require('knex')({
         host : '127.0.0.1',
         user : 'root',
         password : 'root',
-        database : 'zeroweb'
+        database : 'zw_test'
     }
 });
 
@@ -27,12 +28,20 @@ app.use(bodyParser.json());
 app.use(webpackDevMiddleware(compiler));
 
 app.use(express.static(path.join(__dirname, 'dist')));
-
+app.use(session({ secret: "zxryllcvRay/pass", resave: true, saveUninitialized: true }));
+app.use(passport.initialize());
+app.use(passport.session());
 
 require('./routes')(app, knex);
 
 //список курсо
-
-app.listen(PORT, function() {
-    console.log("==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.", PORT, PORT);
-});
+(async () => {
+    try {
+        await db.sequelize.sync();
+    } catch(e){
+        console.log(e);
+    }
+    app.listen(PORT, () => {
+        console.log("==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.", PORT, PORT);
+    });
+})();
