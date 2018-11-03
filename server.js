@@ -18,7 +18,7 @@ const knex = require('knex')({
         host : '127.0.0.1',
         user : 'root',
         password : 'root',
-        database : 'zw_test'
+        database : 'zeroweb'
     }
 });
 

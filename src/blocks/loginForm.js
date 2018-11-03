@@ -9,9 +9,9 @@ class LoginForm extends React.Component {
             message: ''
         };
         // this.onRegisterClick = this.onRegisterClick.bind(this);
-        // this.onSubmit = this.onSubmit.bind(this);
+        this.onLoginClick = this.onLoginClick.bind(this);
     }
-    //
+
     // async onRegisterClick(e) {
     //     e.preventDefault();
     //
@@ -21,18 +21,20 @@ class LoginForm extends React.Component {
     //         console.log("Error: ", e + "");
     //     }
     // }
-    //
-    // async onSubmit(e)  {
-    //     e.preventDefault();
-    //     let email = document.querySelector(".emailInput").value;
-    //     let password = document.querySelector(".passwordInput").value;
-    //     console.log(email, password);
-    //     try {
-    //         await this.props.logIn(email, password);
-    //     } catch (e) {
-    //         console.log("Error: ", e + "");
-    //     }
-    // }
+
+    async onLoginClick(e)  {
+        e.preventDefault();
+        let email = document.querySelector(".emailInput").value;
+        let password = document.querySelector(".passwordInput").value;
+        console.log(email, password);
+        try {
+            // await this.props.logIn(email, password);
+            console.log(email, password);
+            await this.props.logIn(email, password);
+        } catch (e) {
+            console.log("Error: ", e + "");
+        }
+    }
 
     render() {
         return (
@@ -45,8 +47,8 @@ class LoginForm extends React.Component {
                             <input type="password" className="form-control mt-2 passwordInput"
                                    placeholder="Пароль" />
                         </div>
-                        <button onClick={this.onSubmit} type="submit" className="btn btn-primary">Войти</button>
-                        <button onClick={this.onRegisterClick} type="button" className="btn btn-outline-primary ml-1">Я новичок</button>
+                        <button onClick={this.onLoginClick} type="submit" className="btn btn-primary">Войти</button>
+                        <button type="button" className="btn btn-outline-primary ml-1">Я новичок</button>
                     </fieldset>
                 </form>
             </div>
