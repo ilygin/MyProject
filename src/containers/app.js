@@ -16,14 +16,14 @@ class App extends React.Component {
     }
     render() {
         const {courses} = this.props;
-        const {fetchCourses} = this.props.userAction;
+        const {fetchCourses, logIn} = this.props.userAction;
         return (
             <div>
                 <Header />
                 <div className = "container" >
                     <div className = "row main-page-row my-4" >
                         <ListCourses fetchCourses={fetchCourses} courses={courses}/>
-                        <LoginForm />
+                        <LoginForm logIn={logIn}/>
                     </div>
                 </div>
             </div>
