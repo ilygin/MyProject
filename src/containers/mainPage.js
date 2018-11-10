@@ -1,14 +1,14 @@
 import React from 'react';
 import Header from '../blocks/header';
 import ListCourses from "./listCourse";
-import LoginForm from '../blocks/loginForm';
+import LoginForm from '../blocks/mainCourse/loginForm';
 //import PersonalAccount from './mainPage/PersonalAccount';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import * as userAction from '../actions/action'
 
 
-class App extends React.Component {
+class MainPage extends React.Component {
     constructor(props){
         super(props);
         this.state = {
@@ -43,4 +43,4 @@ function mapDispatchToProps(dispatch) {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default connect(mapStateToProps, mapDispatchToProps)(MainPage)
