@@ -4,7 +4,7 @@ module.exports = function(app, knex){
 
     app.get('/api/courses.json', async (req, res)=>{
         const data = await knex
-            .select().from('courses');
+            .select().from('Courses');
         res.send(data);
     });
     //
