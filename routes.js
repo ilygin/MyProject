@@ -7,6 +7,13 @@ module.exports = function(app, knex){
             .select().from('Courses');
         res.send(data);
     });
+
+    app.get('/api/count_courses', async (req, res)=> {
+        const data = await knex
+            .count("id").from("Courses");
+        console.log("Data: ", data[0]);
+        res.send(data);
+    });
     //
     // app.get('/api/chapters-list/:id.json', async (req, res) =>{
     //     const data = await knex

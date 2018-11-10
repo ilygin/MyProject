@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 class ListCourses extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {courses: []};
+        this.state = {courses: [], lastCourseId: -1};
     }
 
     async componentDidMount() {
@@ -15,10 +15,21 @@ class ListCourses extends React.Component {
             this.setState({courses: this.props.courses});
         } catch (e) {
             console.log('Error: ', e);
-        // }
-        // try {
-        //     let countCourse = await
-        // }
+        }
+        try {
+            let countCourseJson = await fetch("http://localhost:3000/api/count_courses");
+                try {
+                    const countCourseResult = await countCourseJson.json();
+
+                    (countCourseResult[0]["count(`id`)"] > 0) ?
+                        this.setState({lastCourseId: countCourseResult[0]["count(`id`)"] + 1}) :
+                        console.log("Ошибка в подсчете кол-ва курсов");
+                } catch (e) {
+                    console.log(e);
+                }
+        } catch (e) {
+            console.log('Error: ', e);
+        }
     }
 
     render() {
@@ -30,7 +41,7 @@ class ListCourses extends React.Component {
                 <fieldset className="form-row mb-1">
                     <form className="form-group mb-1 d-flex">
                         <input className="form-control mr-1 col-9 courseName" type="text" placeholder="Поиск" />
-                        <Link to={"/new_course/:id/page/1"} className="col">
+                        <Link to={"/new_course/" + this.state.lastCourseId + "/page/1"} className="col">
                             <button className={"btn btn-outline-secondary"} type="submit">Создать курс</button>
                         </Link>
                     </form>
