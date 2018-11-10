@@ -1,5 +1,5 @@
 import React from 'react';
-import Course from '../blocks/mainCourse/course';
+import Course from '../blocks/mainPage/course';
 import {connect} from "react-redux";
 import { Link } from 'react-router-dom';
 
@@ -41,7 +41,7 @@ class ListCourses extends React.Component {
                 <fieldset className="form-row mb-1">
                     <form className="form-group mb-1 d-flex">
                         <input className="form-control mr-1 col-9 courseName" type="text" placeholder="Поиск" />
-                        <Link to={"/new_course/" + this.state.lastCourseId + "/page/1"} className="col">
+                        <Link to={"/new_course/" + this.state.lastCourseId + "/page/0"} className="col">
                             <button className={"btn btn-outline-secondary"} type="submit">Создать курс</button>
                         </Link>
                     </form>
