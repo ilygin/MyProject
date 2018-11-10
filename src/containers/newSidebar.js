@@ -10,35 +10,32 @@ class NewSidebar extends React.Component {
         };
     }
     onButtonAdd(type) {
-        // type === "unit" ? this.props.createUnit(newGuid) : this.props.createSection(newGuid);
-        // let currentItems = this.state.items;
-        // let activeItemIndex = this.state.activeItem;
-        // currentItems[activeItemIndex].active = false;
-        // let newElement = {title: type==="unit" ? "Новая глава" : "Новый раздел",
-        //     type,
-        //     active: true,
-        //     id: newGuid
-        // };
-        // currentItems.splice(activeItemIndex+1, 0, newElement);
-        // this.setState({
-        //     items: currentItems,
-        //     activeItem: activeItemIndex+1,
-        //     id: newGuid
-        // });
+         let currentItems = this.state.items;
+         let activeItemIndex = this.state.activeItem;
+         currentItems[activeItemIndex].active = false;
+         let newElement = {title: type==="unit" ? "Новая глава" : "Новый раздел",
+             type,
+             active: true
+         };
+         let newItems = [...currentItems.slice(0, activeItemIndex+1),
+                        newElement,
+                        ...currentItems.slice(activeItemIndex+1)];
+        this.setState({
+            items: newItems,
+            activeItem: activeItemIndex+1
+        });
     }
     //
     onEditItemActive(updateActiveItem) {
-        console.log("onButtonAdd", updateActiveItem)
+        let updateItems = this.state.items;
+        let currentActiveItem = this.state.activeItem;
+        updateItems[currentActiveItem].active = false;
+        updateItems[updateActiveItem].active = true;
+        this.setState({
+            items: updateItems,
+            activeItem: updateActiveItem
+        })
     }
-    //     let updateItems = this.state.items;
-    //     let currentActiveItem = this.state.activeItem;
-    //     updateItems[updateActiveItem].active = true;
-    //     updateItems[currentActiveItem].active = false;
-    //     this.setState({
-    //         items: updateItems,
-    //         activeItem: updateActiveItem
-    //     })
-    // }
 
     render() {
         let newSidebar = this.state.items.map( (item, index) => {
