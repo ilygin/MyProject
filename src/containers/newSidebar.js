@@ -13,7 +13,7 @@ class NewSidebar extends React.Component {
          let currentItems = this.state.items;
          let activeItemIndex = this.state.activeItem;
          currentItems[activeItemIndex].active = false;
-         let newElement = {title: type==="unit" ? "Новая глава" : "Новый раздел",
+         let newElement = {title: type==="unit" ? "Новая глава" : "     Новый раздел",
              type,
              active: true
          };
