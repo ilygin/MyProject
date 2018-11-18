@@ -1,5 +1,5 @@
 import React from 'react';
-// import NewQuillEditor from './NewQuillEditor.js';
+import quillEditor from '../blocks/newPage/quillEditor';
 // import CodeMirror from 'react-codemirror'
 
 require('codemirror/mode/javascript/javascript');
@@ -9,9 +9,11 @@ require('codemirror/mode/markdown/markdown');
 class NewCoursePage extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            editors: []
+        };
         // this.updateCode = this.updateCode.bind(this);
-        // this.addQuillEditor = this.addQuillEditor.bind(this);
+        //this.addEditor = this.addEditor.bind(this);
     }
 
     // updateCode(newCode) {
@@ -20,27 +22,33 @@ class NewCoursePage extends React.Component {
     //     });
     // }
     //
-    // addQuillEditor(type) {
-    //     let newGuid = uuidv1();
-    //     let newBlock = {
-    //         id: newGuid,
-    //         type
-    //     };
-    //     let currentPageBlocks = JSON.parse(window.localStorage.getItem("Blocks")||"[]");
-    //     currentPageBlocks.push(newBlock);
-    //     localStorage.setItem("Blocks", JSON.stringify(currentPageBlocks));
-    // }
+    addEditor(type) {
+        let currentListOfEditors = this.state.editors || JSON.parse(window.localStorage.getItem("Blocks")||"[]");
+        let newBlock = {
+            id: currentListOfEditors.length,
+            type
+        };
+        let newListOfEditors = [...currentListOfEditors, newBlock];
+        localStorage.setItem("Blocks", JSON.stringify(newListOfEditors));
+        this.setState({editors: newListOfEditors});
+    }
 
     render() {
-        // let options = {
-        //     mode: 'javascript',
-        //     lineNumbers: true,
-        // };
-        //
-        // console.log(this.props);
-        // let pageEditors = JSON.parse(window.localStorage.getItem("Editors")||"[]").map( (item, index) => {
-        //     console.log(item, index);
-        // });
+        let pageEditors = [];
+        if (this.state.editors.length === 0) {
+            pageEditors = JSON.parse(window.localStorage.getItem("Editors") || "[]").map((item, index) => {
+                if (item.type === "quill") {
+                    return (<quillEditor />)
+                }
+            })
+        } else {
+            pageEditors = this.state.editors.map((item, index) => {
+                if (item.type === "quill") {
+                    return (<quillEditor />)
+                }
+            })
+        }
+
         return (
             <div className="col-sm-9 col-sm-offset-3 col-md-8 mt-2 offset-md-1">
                 <div className="form-group">
@@ -51,13 +59,13 @@ class NewCoursePage extends React.Component {
                 </div>
                 <div className={"my-4"}>
                     <h3>Содержание курса:</h3>
-
+                    {pageEditors}
                 </div>
                 <div className={"mt-2"}>
                     <button type="button" className="btn btn-outline-secondary">
                         Добавить редактор <strong>кода</strong>
                     </button>
-                    <button type="button" className="btn btn-outline-secondary ml-4">
+                    <button onClick={this.addEditor.bind(this, "quill")} type="button" className="btn btn-outline-secondary ml-4">
                         Добавить редактор <strong>текста</strong>
                     </button>
                 </div>

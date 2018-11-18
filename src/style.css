@@ -1,9 +1,10 @@
 .sidebar {
-    position: sticky !important;;
-    top: 54.38px;
-    height: calc(100vh - 54.38px);
-    padding: 0 !important;;
+    position: sticky !important;
+    top: 40px;
+    height: calc(100vh - 40px);
+    padding: 0 !important;
     overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 .main-page-row {
