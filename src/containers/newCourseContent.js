@@ -1,10 +1,6 @@
 import React from 'react';
-import quillEditor from '../blocks/newPage/quillEditor';
-// import CodeMirror from 'react-codemirror'
-
-require('codemirror/mode/javascript/javascript');
-require('codemirror/mode/xml/xml');
-require('codemirror/mode/markdown/markdown');
+import QuillEditor from '../blocks/newPage/quillEditor';
+import CodeMirrorEditor from 'react-codemirror'
 
 class NewCoursePage extends React.Component {
     constructor(props) {
@@ -12,16 +8,8 @@ class NewCoursePage extends React.Component {
         this.state = {
             editors: []
         };
-        // this.updateCode = this.updateCode.bind(this);
-        //this.addEditor = this.addEditor.bind(this);
     }
 
-    // updateCode(newCode) {
-    //     this.setState({
-    //         codemirror: newCode,
-    //     });
-    // }
-    //
     addEditor(type) {
         let currentListOfEditors = this.state.editors || JSON.parse(window.localStorage.getItem("Blocks")||"[]");
         let newBlock = {
@@ -38,13 +26,17 @@ class NewCoursePage extends React.Component {
         if (this.state.editors.length === 0) {
             pageEditors = JSON.parse(window.localStorage.getItem("Editors") || "[]").map((item, index) => {
                 if (item.type === "quill") {
-                    return (<quillEditor />)
+                    return (<QuillEditor />)
+                } else if (item.type === "codemirror") {
+                    return (<CodeMirrorEditor />)
                 }
             })
         } else {
             pageEditors = this.state.editors.map((item, index) => {
                 if (item.type === "quill") {
-                    return (<quillEditor />)
+                    return (<QuillEditor />)
+                } else if (item.type === "codemirror") {
+                    return (<CodeMirrorEditor />)
                 }
             })
         }
