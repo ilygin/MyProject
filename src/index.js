@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './style.css';
-//import '../dist/quill.snow.css';
+import 'quill/dist/quill.snow.css';
 import 'codemirror/lib/codemirror.css';
 
 import mainPage from './containers/mainPage';
