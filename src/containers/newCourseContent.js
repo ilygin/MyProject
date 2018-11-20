@@ -1,6 +1,6 @@
 import React from 'react';
 import QuillEditor from '../blocks/newPage/quillEditor';
-import CodeMirrorEditor from 'react-codemirror'
+import CodeMirrorEditor from '../blocks/newPage/codeMirrorEditor';
 
 class NewCoursePage extends React.Component {
     constructor(props) {
@@ -17,26 +17,39 @@ class NewCoursePage extends React.Component {
             type
         };
         let newListOfEditors = [...currentListOfEditors, newBlock];
-        localStorage.setItem("Blocks", JSON.stringify(newListOfEditors));
+        localStorage.setItem("Editors", JSON.stringify(newListOfEditors));
         this.setState({editors: newListOfEditors});
     }
 
     render() {
         let pageEditors = [];
         if (this.state.editors.length === 0) {
+            debugger;
             pageEditors = JSON.parse(window.localStorage.getItem("Editors") || "[]").map((item, index) => {
                 if (item.type === "quill") {
-                    return (<QuillEditor />)
+                    return (
+                        <div className={"my-2"}>
+                            <QuillEditor />
+                        </div>)
                 } else if (item.type === "codemirror") {
-                    return (<CodeMirrorEditor />)
+                    return (
+                        <div className={"my-2"}>
+                            <CodeMirrorEditor />
+                        </div>)
                 }
             })
         } else {
             pageEditors = this.state.editors.map((item, index) => {
                 if (item.type === "quill") {
-                    return (<QuillEditor />)
+                    return (
+                        <div className={"my-2"}>
+                            <QuillEditor />
+                        </div>)
                 } else if (item.type === "codemirror") {
-                    return (<CodeMirrorEditor />)
+                    return (
+                        <div className={"my-2"}>
+                            <CodeMirrorEditor />
+                        </div>)
                 }
             })
         }
@@ -54,7 +67,7 @@ class NewCoursePage extends React.Component {
                     {pageEditors}
                 </div>
                 <div className={"mt-2"}>
-                    <button type="button" className="btn btn-outline-secondary">
+                    <button onClick={this.addEditor.bind(this, "codemirror")} type="button" className="btn btn-outline-secondary">
                         Добавить редактор <strong>кода</strong>
                     </button>
                     <button onClick={this.addEditor.bind(this, "quill")} type="button" className="btn btn-outline-secondary ml-4">

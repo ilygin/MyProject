@@ -2,9 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './style.css';
 import 'quill/dist/quill.snow.css';
 import 'codemirror/lib/codemirror.css';
+import './style.css';
 
 import mainPage from './containers/mainPage';
 import newCourse from './containers/newCourse';
