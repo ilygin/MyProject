@@ -1,4 +1,5 @@
-import CodeMirror from 'react-codemirror';
+import React from 'react';
+import {UnControlled as CodeMirror} from 'react-codemirror2'
 
 require('codemirror/mode/javascript/javascript');
 require('codemirror/mode/xml/xml');
@@ -18,10 +19,11 @@ class CodeMirrorEditor extends React.Component {
     render() {
         let options = {
             lineNumbers: true,
+            mode: 'javascript'
         };
         console.log(this.props);
         return (
-            <CodeMirror value={this.state.code} onChange={this.updateCode} options={options}/>
+            <CodeMirror  options={options}/>
         )
     }
 }
