@@ -10,15 +10,6 @@ import * as userAction from "../actions/action";
 
 class NewCourse extends React.Component {
     render() {
-        // const { createUnit, createSection } = this.props.userAction;
-        // const { items } = this.props;
-        //
-        // let context = this.props.items.context.filter(
-        //     item => {
-        //         return item.id.toUpperCase().includes(this.props.match.params.id.toUpperCase())
-        //     }
-        // );
-
         return (
             <div>
                 <Header />
