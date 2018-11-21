@@ -24,7 +24,6 @@ class NewCoursePage extends React.Component {
     render() {
         let pageEditors = [];
         if (this.state.editors.length === 0) {
-            debugger;
             pageEditors = JSON.parse(window.localStorage.getItem("Editors") || "[]").map((item, index) => {
                 if (item.type === "quill") {
                     return (

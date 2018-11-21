@@ -13,7 +13,7 @@ class NewSidebar extends React.Component {
          let currentItems = this.state.items;
          let activeItemIndex = this.state.activeItem;
          currentItems[activeItemIndex].active = false;
-         let newElement = {title: type==="unit" ? "Новая глава" : "     Новый раздел",
+         let newElement = {title: type==="unit" ? "Новая глава" : "Новый раздел",
              type,
              active: true
          };
@@ -39,10 +39,13 @@ class NewSidebar extends React.Component {
 
     render() {
         let newSidebar = this.state.items.map( (item, index) => {
+            let liClassName = (item.type === "unit"||item.type === "titlePage") ? ("list-group-item list-group-item-action") : ("sectionPadding list-group-item list-group-item-action");
             return (
                 <li>
-                    <Link to = {index===0 ? "/new_course/6/page/1" :"/new_course/6/page/" + index}>
-                        <li onClick={this.onEditItemActive.bind(this, index)} className="list-group-item list-group-item-action">{item.title}</li>
+                    <Link to = {index===0 ? "/new_course/6/"+ item.type +"Э/0" :"/new_course/6/" + item.type +"/" + index}>
+                        <li onClick={this.onEditItemActive.bind(this, index)} className={liClassName}>
+                            {(item.type === "unit"||item.type === "titlePage") ? item.title : String.fromCharCode(8226)+ " " + item.title }
+                         </li>
                     </Link>
                     {item.active ?
                         (<div className="mx-2 sidebar-button-container">

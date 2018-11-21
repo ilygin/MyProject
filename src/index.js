@@ -21,7 +21,7 @@ ReactDOM.render(
         <BrowserRouter>
             <Switch>
                 <Route exact path='/' component={mainPage}/>
-                <Route path={'/new_course/:id/page/:id'} component={newCourse}/>
+                <Route path={'/new_course/:id/:typePage/:id'} component={newCourse}/>
             </Switch>
         </BrowserRouter>
     </Provider>,
