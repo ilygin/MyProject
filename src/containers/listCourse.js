@@ -17,7 +17,7 @@ class ListCourses extends React.Component {
             console.log('Error: ', e);
         }
         try {
-            let countCourseJson = await fetch("http://localhost:3000/api/count_courses");
+            let countCourseJson = await fetch("http://77.222.54.255/api/count_courses");
                 try {
                     const countCourseResult = await countCourseJson.json();
 

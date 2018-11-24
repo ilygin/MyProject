@@ -1,5 +1,5 @@
-export const REQUEST_COURSE = 'REQUEST_COURSE'
-export const RECEIVE_COURSE = 'RECEIVE_COURSE'
+export const REQUEST_COURSE = 'REQUEST_COURSE';
+export const RECEIVE_COURSE = 'RECEIVE_COURSE';
 
 export function requestCourses() {
     return {
@@ -18,7 +18,7 @@ export function fetchCourses() {
     return function (dispatch) {
         dispatch(requestCourses());
         const request = async () => {
-            const response = await fetch('http://localhost:3000/api/courses.json');
+            const response = await fetch('http://77.222.54.255/api/courses.json');
             try {
                 const json = await response.json();
                 dispatch(receiveCourses(json));
@@ -56,7 +56,7 @@ export function logIn(email, password) {
         dispatch(postUserData());
         const request = async (email = 0, password = 0) => {
             try {
-                let a = fetch('http://localhost:3000/api/login/', {
+                let a = fetch('http://77.222.54.255/api/login/', {
                     method: 'post',
                     body: JSON.stringify({email, password}),
                     headers: {
