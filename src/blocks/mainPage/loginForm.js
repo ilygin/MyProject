@@ -26,10 +26,8 @@ class LoginForm extends React.Component {
         e.preventDefault();
         let email = document.querySelector(".emailInput").value;
         let password = document.querySelector(".passwordInput").value;
-        console.log(email, password);
         try {
             // await this.props.logIn(email, password);
-            console.log(email, password);
             await this.props.logIn(email, password);
         } catch (e) {
             console.log("Error: ", e + "");

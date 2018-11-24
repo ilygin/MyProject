@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "node server.js --mode development",
     "build": "webpack --mode production",
-    "start": "babel-node server.js"
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",

@@ -21,7 +21,6 @@ class CodeMirrorEditor extends React.Component {
             lineNumbers: true,
             mode: 'javascript'
         };
-        console.log(this.props);
         return (
             <CodeMirror  options={options}/>
         )
