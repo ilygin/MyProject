@@ -1,14 +1,14 @@
 const express = require('express');
 const webpack = require('webpack');
 const path = require('path');
-const webpackDevMiddleware = require('webpack-dev-middleware');
+// const webpackDevMiddleware = require('webpack-dev-middleware');
 const session = require("express-session");
 const bodyParser = require('body-parser');
 const passport = require("./config/passport");
 const db = require('./models');
 
-const config = require('./webpack.config.js');
-const compiler = webpack(config);
+// const config = require('./webpack.config.js');
+// const compiler = webpack(config);
 //pc zw_test
 //nout zeroweb
 const PORT = 3000;
@@ -25,7 +25,7 @@ const knex = require('knex')({
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(webpackDevMiddleware(compiler));
+// app.use(webpackDevMiddleware(compiler));
 
 app.use(express.static(path.join(__dirname, 'dist')));
 app.use(session({ secret: "zxryllcvRay/pass", resave: true, saveUninitialized: true }));
@@ -34,7 +34,6 @@ app.use(passport.session());
 
 require('./routes')(app, knex);
 
-//список курсо
 (async () => {
     try {
         await db.sequelize.sync();
