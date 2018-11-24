@@ -32,7 +32,7 @@ class quillEditor extends React.Component {
             'bold', 'italic', 'underline', 'strike', 'blockquote',
             'list', 'bullet', 'indent'
         ];
-        console.log(this.props);
+
         return (
             <ReactQuill
                 theme={this.state.theme}

@@ -11,7 +11,6 @@ module.exports = function(app, knex){
     app.get('/api/count_courses', async (req, res)=> {
         const data = await knex
             .count("id").from("Courses");
-        console.log("Data: ", data[0]);
         res.send(data);
     });
     //
@@ -66,12 +65,10 @@ module.exports = function(app, knex){
         // Since we're doing a POST with javascript, we can't actually redirect that post into a GET request
         // So we're sending the user back the route to the members page because the redirect will happen on the front end
         // They won't get this or even be able to access this page if they aren't authed
-        console.log(res.json());
         res.json("/my_account");
     });
 
     // app.post("/api/signup", function(req, res) {
-    //     console.log(req.body);
     //     db.User.create({
     //         email: req.body.email,
     //         password: req.body.password
