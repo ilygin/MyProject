@@ -25,7 +25,7 @@ module.exports = {
         historyApiFallback: true,
         hot: true,
         inline: true,
-        host: 'localhost',
+        host: '77.222.54.255/',
         port: 3000,
     },
     plugins: [
