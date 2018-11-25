@@ -8,19 +8,8 @@ class LoginForm extends React.Component {
             password: '',
             message: ''
         };
-        // this.onRegisterClick = this.onRegisterClick.bind(this);
         this.onLoginClick = this.onLoginClick.bind(this);
     }
-
-    // async onRegisterClick(e) {
-    //     e.preventDefault();
-    //
-    //     try {
-    //         await this.props.registerNewUser(email, password);
-    //     } catch (e) {
-    //         console.log("Error: ", e + "");
-    //     }
-    // }
 
     async onLoginClick(e)  {
         e.preventDefault();

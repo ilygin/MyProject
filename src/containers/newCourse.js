@@ -24,9 +24,7 @@ class NewCourse extends React.Component {
     }
 }
 function mapStateToProps (state) {
-    return {
-        items: state.createCourse
-    }
+    return {}
 }
 
 function mapDispatchToProps(dispatch) {

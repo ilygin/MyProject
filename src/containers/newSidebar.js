@@ -43,7 +43,7 @@ class NewSidebar extends React.Component {
             return (
                 <li>
                     <Link to = {index===0 ? "/new_course/6/"+ item.type +"Э/0" :"/new_course/6/" + item.type +"/" + index}>
-                        <li onClick={this.onEditItemActive.bind(this, index)} className={liClassName}>
+                        <li key={"pagId" + index} onClick={this.onEditItemActive.bind(this, index)} className={liClassName}>
                             {(item.type === "unit"||item.type === "titlePage") ? item.title : String.fromCharCode(8226)+ " " + item.title }
                          </li>
                     </Link>
