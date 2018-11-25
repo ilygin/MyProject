@@ -2,7 +2,6 @@ import React from 'react';
 import Header from '../blocks/header';
 import ListCourses from "./listCourse";
 import LoginForm from '../blocks/mainPage/loginForm';
-//import PersonalAccount from './mainPage/PersonalAccount';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import * as userAction from '../actions/action'
