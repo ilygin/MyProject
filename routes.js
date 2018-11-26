@@ -17,18 +17,18 @@ module.exports = function(app, knex){
 
     app.post('/api/checkEmail', async (req, res)=> {
         const data = await knex
-            .count("id").from("Users").where({email: req.email});
-
-        data[0] ? res.send(true) : res.send(false);
+            .count("id").from("Users").where({email: req.body.email});
+        res.send(data);
     });
 
     app.post('/api/signup', async (req, res)=> {
-        if (req.email && req.password) {
+        if (req.body.email && req.body.password) {
+            console.log(req.body);
             const hashPassport = crypto.createHmac('sha256', secret)
-                .update(req.password)
+                .update(req.body.password)
                 .digest('hex');
             const currentDate = new Date().toUTCString();
-
+            console.log(hashPassport);
             try {
                 await knex('Users')
                     .insert({email: req.body.email, password: hashPassport, createdAt: currentDate, updatedAt: currentDate});
