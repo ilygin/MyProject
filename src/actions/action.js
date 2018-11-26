@@ -1,7 +1,9 @@
 export const REQUEST_COURSE = 'REQUEST_COURSE';
 export const RECEIVE_COURSE = 'RECEIVE_COURSE';
 const URL = "http://77.222.54.255";
-const URL2 = "http://localhost";
+/* for dev mode
+const URL = "http://localhost:3000";
+ */
 export function requestCourses() {
     return {
         type: REQUEST_COURSE
@@ -56,35 +58,48 @@ export function statusError(msg) {
 }
 export function signUpUser(email, password) {
     return function (dispatch) {
+        dispatch(postUserData());
         if (!email && !password) {
             dispatch(statusError());
             return;
         }
-        dispatch(postUserData());
         const checkEmail = async(email) => {
-            let isEmailNew = false;
+            let isEmailNotNew = false;
             try {
-                isEmailNew = await fetch(`${URL}/api/checkEmail`, {
+                let data = await fetch(`${URL}/api/checkEmail/`, {
                     method: 'post',
-                    body: JSON.stringify({email}),
+                    credentials: 'include',
                     headers: {
-                        'content-type': 'application/json'
-                    }
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        email
+                    })
                 });
-                dispatch(statusSuccess());
+                let isEmailNewJson = await data.json();
+                isEmailNotNew = isEmailNewJson[0]["count(`id`)"] > 0;
             } catch (e) {
                 dispatch(statusError(e.toString()));
+                return;
             }
-
-            if (isEmailNew) {
+            if (isEmailNotNew) {
+                dispatch(statusError("Email уже зарегестрирован"));
+                return;
+            } else {
                 const registerNewUser = async (email, password) => {
                     try {
                         await fetch(`${URL}/api/signup/`, {
                             method: 'post',
-                            body: JSON.stringify({email, password}),
+                            credentials: 'include',
                             headers: {
-                                'content-type': 'application/json'
-                            }
+                                'Accept': 'application/json',
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                email,
+                                password
+                            })
                         });
                         dispatch(statusSuccess());
                     } catch (e) {
@@ -92,8 +107,6 @@ export function signUpUser(email, password) {
                     }
                 };
                 return registerNewUser(email, password);
-            } else {
-                dispatch(statusError("Email уже зарегестрирован"));
             }
         };
         return checkEmail(email);

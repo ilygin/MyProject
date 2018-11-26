@@ -14,7 +14,7 @@ class MainPage extends React.Component {
         }
     }
     render() {
-        const {courses} = this.props;
+        const {courses, newUser} = this.props;
         const {fetchCourses, signUpUser} = this.props.userAction;
         return (
             <div>
@@ -22,7 +22,7 @@ class MainPage extends React.Component {
                 <div className = "container" >
                     <div className = "row main-page-row my-4" >
                         <ListCourses fetchCourses={fetchCourses} courses={courses}/>
-                        <LoginForm signUpUser={signUpUser}/>
+                        <LoginForm signUpUser={signUpUser} newUser={newUser}/>
                     </div>
                 </div>
             </div>
@@ -32,7 +32,8 @@ class MainPage extends React.Component {
 
 function mapStateToProps (state) {
     return {
-        courses: state.courses
+        courses: state.courses,
+        newUser: state.newUser
     }
 }
 

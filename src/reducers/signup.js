@@ -2,10 +2,11 @@ import {POST_USER_DATA, STATUS_ERROR, STATUS_SUCCESS} from '../actions/action';
 
 const initialState = {
     isFetching: false,
-    items: []
+    status: "",
+    msg: ""
 };
 
-export default function loginUser(state = initialState, action) {
+export default function newUser(state = initialState, action) {
     switch (action.type) {
         case POST_USER_DATA:
             return Object.assign({}, state, {
