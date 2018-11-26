@@ -17,7 +17,7 @@ class LoginForm extends React.Component {
         let password = document.querySelector(".passwordInput").value;
         try {
             // await this.props.logIn(email, password);
-            await this.props.logIn(email, password);
+            await this.props.signUpUser(email, password);
         } catch (e) {
             console.log("Error: ", e + "");
         }

@@ -19,7 +19,8 @@ export default function loginUser(state = initialState, action) {
         case STATUS_ERROR:
             return Object.assign({}, state, {
                 isFetching: false,
-                status: 'error'
+                status: 'error',
+                msg: action.msg
             });
         default:
             return state
