@@ -4,7 +4,7 @@ import ListCourses from "./listCourse";
 import LoginForm from '../blocks/mainPage/loginForm';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import * as userAction from '../actions/action'
+import * as userAction from '../actions/action';
 
 
 class MainPage extends React.Component {
@@ -14,15 +14,15 @@ class MainPage extends React.Component {
         }
     }
     render() {
-        const {courses} = this.props;
-        const {fetchCourses, logIn} = this.props.userAction;
+        const {courses, newUser} = this.props;
+        const {fetchCourses, signUpUser} = this.props.userAction;
         return (
             <div>
                 <Header />
                 <div className = "container" >
                     <div className = "row main-page-row my-4" >
                         <ListCourses fetchCourses={fetchCourses} courses={courses}/>
-                        <LoginForm logIn={logIn}/>
+                        <LoginForm signUpUser={signUpUser} newUser={newUser}/>
                     </div>
                 </div>
             </div>
@@ -32,7 +32,8 @@ class MainPage extends React.Component {
 
 function mapStateToProps (state) {
     return {
-        courses: state.courses
+        courses: state.courses,
+        newUser: state.newUser
     }
 }
 
