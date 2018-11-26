@@ -41,6 +41,7 @@
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.18.3",
     "bootstrap": "^4.1.0",
+    "crypto": "^1.0.1",
     "express": "^4.16.4",
     "express-session": "^1.15.6",
     "isomorphic-fetch": "^2.2.1",

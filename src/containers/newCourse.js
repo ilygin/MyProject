@@ -1,5 +1,4 @@
 import React from 'react';
-
 import Header from './../blocks/header';
 import NewSidebar from "./newSidebar";
 import NewCourseContent from "./newCourseContent";
