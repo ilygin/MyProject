@@ -1,6 +1,7 @@
 export const REQUEST_COURSE = 'REQUEST_COURSE';
 export const RECEIVE_COURSE = 'RECEIVE_COURSE';
 const URL = "http://77.222.54.255";
+const URL2 = "http://localhost";
 export function requestCourses() {
     return {
         type: REQUEST_COURSE

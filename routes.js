@@ -18,6 +18,7 @@ module.exports = function(app, knex){
     app.get('/api/checkEmail', async (req, res)=> {
         const data = await knex
             .count("id").from("Users").where({email: req.email});
+
         data[0] ? res.send(true) : res.send(false);
     });
 
@@ -29,7 +30,7 @@ module.exports = function(app, knex){
             const currentDate = new Date().toUTCString();
 
             try {
-                await knex('users')
+                await knex('Users')
                     .insert({email: req.body.email, password: hashPassport, createdAt: currentDate, updatedAt: currentDate});
 
                 res.send({status: "success"});
