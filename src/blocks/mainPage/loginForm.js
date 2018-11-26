@@ -8,15 +8,14 @@ class LoginForm extends React.Component {
             password: '',
             message: ''
         };
-        this.onLoginClick = this.onLoginClick.bind(this);
+        this.onSignUpClick = this.onSignUpClick.bind(this);
     }
 
-    async onLoginClick(e)  {
+    async onSignUpClick(e)  {
         e.preventDefault();
         let email = document.querySelector(".emailInput").value;
         let password = document.querySelector(".passwordInput").value;
         try {
-            // await this.props.logIn(email, password);
             await this.props.signUpUser(email, password);
         } catch (e) {
             console.log("Error: ", e + "");
@@ -34,8 +33,8 @@ class LoginForm extends React.Component {
                             <input type="password" className="form-control mt-2 passwordInput"
                                    placeholder="Пароль" />
                         </div>
-                        <button onClick={this.onLoginClick} type="submit" className="btn btn-primary">Войти</button>
-                        <button type="button" className="btn btn-outline-primary ml-1">Я новичок</button>
+                        <button  type="submit" className="btn btn-primary">Войти</button>
+                        <button onClick={this.onSignUpClick} type="button" className="btn btn-outline-primary ml-1">Я новичок</button>
                     </fieldset>
                 </form>
             </div>
