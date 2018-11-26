@@ -1,7 +1,5 @@
-import crypto from "crypto";
-
+const crypto = require('crypto');
 const secret = 'DearFriendPressR4Ultimate';
-console.log(hash);
 
 module.exports = function(app, knex){
 
@@ -25,7 +23,6 @@ module.exports = function(app, knex){
 
     app.get('/api/signup', async (req, res)=> {
         if (req.email && req.password) {
-
             const hashPassport = crypto.createHmac('sha256', secret)
                 .update(req.password)
                 .digest('hex');
