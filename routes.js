@@ -15,14 +15,14 @@ module.exports = function(app, knex){
         res.send(data);
     });
 
-    app.get('/api/checkEmail', async (req, res)=> {
+    app.post('/api/checkEmail', async (req, res)=> {
         const data = await knex
             .count("id").from("Users").where({email: req.email});
 
         data[0] ? res.send(true) : res.send(false);
     });
 
-    app.get('/api/signup', async (req, res)=> {
+    app.post('/api/signup', async (req, res)=> {
         if (req.email && req.password) {
             const hashPassport = crypto.createHmac('sha256', secret)
                 .update(req.password)
