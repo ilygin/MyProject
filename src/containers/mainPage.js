@@ -15,14 +15,14 @@ class MainPage extends React.Component {
     }
     render() {
         const {courses, newUser} = this.props;
-        const {fetchCourses, signUpUser} = this.props.userAction;
+        const {fetchCourses, signUpUser, logInUser} = this.props.userAction;
         return (
             <div>
                 <Header />
                 <div className = "container" >
                     <div className = "row main-page-row my-4" >
                         <ListCourses fetchCourses={fetchCourses} courses={courses}/>
-                        <LoginForm signUpUser={signUpUser} newUser={newUser}/>
+                        <LoginForm logInUser={logInUser} signUpUser={signUpUser} newUser={newUser}/>
                     </div>
                 </div>
             </div>

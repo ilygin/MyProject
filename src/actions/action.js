@@ -1,9 +1,9 @@
 export const REQUEST_COURSE = 'REQUEST_COURSE';
 export const RECEIVE_COURSE = 'RECEIVE_COURSE';
-const URL = "http://77.222.54.255";
-/* for dev mode
+//const URL = "http://77.222.54.255";
+/* for dev mode*/
 const URL = "http://localhost:3000";
- */
+
 export function requestCourses() {
     return {
         type: REQUEST_COURSE
@@ -60,7 +60,7 @@ export function signUpUser(email, password) {
     return function (dispatch) {
         dispatch(postUserData());
         if (!email && !password) {
-            dispatch(statusError());
+            dispatch(statusError("Заполните поля email и пароль"));
             return;
         }
         const checkEmail = async(email) => {
@@ -110,5 +110,37 @@ export function signUpUser(email, password) {
             }
         };
         return checkEmail(email);
+    }
+}
+
+export function logInUser(email, password) {
+    return function(dispatch) {
+        dispatch(postUserData());
+        if (!email && !password) {
+            dispatch(statusError("Заполните поля email и пароль"));
+            return;
+        }
+        const checkUser = async (email, password) => {
+            try {
+                let data = await fetch(`${URL}/api/logInUser/`, {
+                    method: 'post',
+                    credentials: 'include',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        email,
+                        password
+                    })
+                });
+                let isEmailNewJson = await data.json();
+                console.log(isEmailNewJson);
+            } catch (e) {
+                dispatch(statusError(e.toString()));
+                return;
+            }
+        }
+        return checkUser(email, password);
     }
 }
