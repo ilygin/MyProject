@@ -59,7 +59,6 @@ module.exports = function(app, knex, session){
                     res.session = {
                         userId: match[0].id
                     };
-                    console.log(res.session);
                     res.status(200).send({status: "success"});
                 }
             }

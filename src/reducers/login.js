@@ -1,27 +1,27 @@
-import {POST_USER_DATA, STATUS_ERROR, STATUS_SUCCESS} from '../actions/action';
+import {POST_USER_DATA_LOGIN, STATUS_ERROR_LOGIN, STATUS_SUCCESS_LOGIN} from '../actions/action';
 
 const initialState = {
-    isFetching: false,
-    status: "",
-    msg: ""
+    isFetchingLogin: false,
+    statusLogin: "",
+    msgLogin: ""
 };
 
 export default function loginUser(state = initialState, action) {
     switch (action.type) {
-        case POST_USER_DATA:
+        case POST_USER_DATA_LOGIN:
             return Object.assign({}, state, {
-                isFetching: true
+                isFetchingLogin: true
             });
-        case STATUS_SUCCESS:
+        case STATUS_SUCCESS_LOGIN:
             return Object.assign({}, state, {
-                isFetching: false,
-                status: 'success'
+                isFetchingLogin: false,
+                statusLogin: 'success'
             });
-        case STATUS_ERROR:
+        case STATUS_ERROR_LOGIN:
             return Object.assign({}, state, {
-                isFetching: false,
-                status: 'error',
-                msg: action.msg
+                isFetchingLogin: false,
+                statusLogin: 'error',
+                msgLogin: action.msg
             });
         default:
             return state
