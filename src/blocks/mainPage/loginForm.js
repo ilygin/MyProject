@@ -1,4 +1,5 @@
 import React from 'react';
+import {statusError} from "../../actions/action";
 
 class LoginForm extends React.Component {
     constructor(props) {
@@ -9,6 +10,7 @@ class LoginForm extends React.Component {
             message: ''
         };
         this.onSignUpClick = this.onSignUpClick.bind(this);
+        this.onLogInUserClick = this.onLogInUserClick.bind(this);
     }
 
     async onSignUpClick(e)  {
@@ -17,6 +19,17 @@ class LoginForm extends React.Component {
         let password = document.querySelector(".passwordInput").value;
         try {
             await this.props.signUpUser(email, password);
+        } catch (e) {
+            console.log("Error: ", e + "");
+        }
+    }
+
+    async onLogInUserClick(e)  {
+        e.preventDefault();
+        let email = document.querySelector(".emailInput").value;
+        let password = document.querySelector(".passwordInput").value;
+        try {
+            await this.props.logInUser(email, password);
         } catch (e) {
             console.log("Error: ", e + "");
         }
@@ -35,7 +48,7 @@ class LoginForm extends React.Component {
                         </div>
                         {this.props.newUser.status === "error" ? <div><h3>{this.props.newUser.msg}</h3></div> :
                             this.props.newUser.status === "success" ? <div><h3>Поздравляю с успешной регистрацией</h3></div> : (false)}
-                        <button  type="submit" className="btn btn-primary">Войти</button>
+                        <button onClick={this.onLogInUserClick} type="submit" className="btn btn-primary">Войти</button>
                         <button onClick={this.onSignUpClick} type="button" className="btn btn-outline-primary ml-1">Я новичок</button>
                     </fieldset>
                 </form>
