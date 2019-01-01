@@ -56,6 +56,7 @@ export function statusError(msg) {
         msg
     }
 }
+
 export function signUpUser(email, password) {
     return function (dispatch) {
         dispatch(postUserData());
@@ -113,11 +114,33 @@ export function signUpUser(email, password) {
     }
 }
 
+export const POST_USER_DATA_LOGIN= "POST_USER_DATA";
+export const STATUS_SUCCESS_LOGIN = "STATUS_SUCCESS";
+export const STATUS_ERROR_LOGIN = "STATUS_ERROR";
+
+export function checkUserData() {
+    return {
+        type: POST_USER_DATA_LOGIN
+    }
+}
+
+export function loginStatusSuccess() {
+    return {
+        type: STATUS_SUCCESS_LOGIN,
+    }
+}
+
+export function loginStatusError(msg) {
+    return {
+        type: STATUS_ERROR_LOGIN,
+        msg
+    }
+}
 export function logInUser(email, password) {
     return function(dispatch) {
-        dispatch(postUserData());
-        if (!email && !password) {
-            dispatch(statusError("Заполните поля email и пароль"));
+        dispatch(checkUserData());
+        if (!email || !password) {
+            dispatch(loginStatusError("Заполните поля email и пароль"));
             return;
         }
         const checkUser = async (email, password) => {
@@ -134,10 +157,14 @@ export function logInUser(email, password) {
                         password
                     })
                 });
-                let isEmailNewJson = await data.json();
-                console.log(isEmailNewJson);
-            } catch (e) {
-                dispatch(statusError(e.toString()));
+                let checkUserDataJson = await data.json();
+                if (checkUserDataJson.status === "success") {
+                    dispatch(loginStatusSuccess());
+                }else {
+                    dispatch(loginStatusError(checkUserDataJson.msg));
+                }
+            }catch (e) {
+                dispatch(loginStatusError(e.toString()));
                 return;
             }
         }

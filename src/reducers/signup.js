@@ -15,7 +15,7 @@ export default function newUser(state = initialState, action) {
         case STATUS_SUCCESS:
             return Object.assign({}, state, {
                 isFetching: false,
-                status: 'success'
+                status: 'success123'
             });
         case STATUS_ERROR:
             return Object.assign({}, state, {
