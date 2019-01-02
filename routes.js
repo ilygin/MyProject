@@ -25,6 +25,14 @@ module.exports = function(app, knex, session){
         res.send(data);
     });
 
+    function checkLoginUser(req, res, next) {
+        if (req.session.user) {
+            next();
+        }else {
+            res.redirect("/");
+        }
+    }
+
     app.post('/api/signup', async (req, res)=> {
         if (req.body.email && req.body.password) {
             const hashPassport = bcrypt.hashSync(req.body.password, 10);
@@ -56,9 +64,7 @@ module.exports = function(app, knex, session){
                 if (!data) {
                     res.send({status: "error", msg: "Неверный пароль"});
                 } else {
-                    res.session = {
-                        userId: match[0].id
-                    };
+                    req.session.user = match[0];
                     res.status(200).send({status: "success"});
                 }
             }
@@ -67,7 +73,9 @@ module.exports = function(app, knex, session){
         }
     });
 
-
+    app.get("/course/:id", checkLoginUser, (req, res)=>{
+        console.log("course")
+    });
     app.get("*", (req, res) => {
         res.sendFile(__dirname + '/dist/index.html')
     });
