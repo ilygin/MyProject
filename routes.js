@@ -73,9 +73,16 @@ module.exports = function(app, knex, session){
         }
     });
 
-    app.get("/course/:id", checkLoginUser, (req, res)=>{
-        console.log("course")
+    app.get("/api/logout", (req, res) => {
+        req.session.destroy(()=>{
+            res.redirect("/");
+        })
     });
+
+    app.get("/course/*", checkLoginUser, (req, res, next)=>{
+        next();
+    });
+
     app.get("*", (req, res) => {
         res.sendFile(__dirname + '/dist/index.html')
     });
