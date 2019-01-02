@@ -16,6 +16,7 @@ class MainPage extends React.Component {
     render() {
         const {courses, newUserState, loginUserState} = this.props;
         const {fetchCourses, signUpUser, logInUser} = this.props.userAction;
+        console.log(this.props);
         return (
             <div>
                 <Header />

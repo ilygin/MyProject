@@ -7,7 +7,7 @@ const initialState = {
 };
 
 export default function loginUser(state = initialState, action) {
-    debugger;
+
     switch (action.type) {
         case LOGIN_POST_USER_DATA:
             return Object.assign({}, state, {
