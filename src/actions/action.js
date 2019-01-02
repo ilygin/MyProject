@@ -114,25 +114,25 @@ export function signUpUser(email, password) {
     }
 }
 
-export const POST_USER_DATA_LOGIN= "POST_USER_DATA";
-export const STATUS_SUCCESS_LOGIN = "STATUS_SUCCESS";
-export const STATUS_ERROR_LOGIN = "STATUS_ERROR";
+export const LOGIN_POST_USER_DATA= "LOGIN_POST_USER_DATA";
+export const LOGIN_STATUS_SUCCESS = "LOGIN_STATUS_SUCCESS";
+export const LOGIN_STATUS_ERROR = "LOGIN_STATUS_ERROR";
 
 export function checkUserData() {
     return {
-        type: POST_USER_DATA_LOGIN
+        type: LOGIN_POST_USER_DATA
     }
 }
 
 export function loginStatusSuccess() {
     return {
-        type: STATUS_SUCCESS_LOGIN,
+        type: LOGIN_STATUS_SUCCESS,
     }
 }
 
 export function loginStatusError(msg) {
     return {
-        type: STATUS_ERROR_LOGIN,
+        type: LOGIN_STATUS_ERROR,
         msg
     }
 }
@@ -167,7 +167,7 @@ export function logInUser(email, password) {
                 dispatch(loginStatusError(e.toString()));
                 return;
             }
-        }
+        };
         return checkUser(email, password);
     }
 }

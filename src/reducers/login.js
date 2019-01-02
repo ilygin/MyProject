@@ -1,4 +1,4 @@
-import {POST_USER_DATA_LOGIN, STATUS_ERROR_LOGIN, STATUS_SUCCESS_LOGIN} from '../actions/action';
+import {LOGIN_POST_USER_DATA, LOGIN_STATUS_ERROR, LOGIN_STATUS_SUCCESS} from '../actions/action';
 
 const initialState = {
     isFetchingLogin: false,
@@ -7,17 +7,18 @@ const initialState = {
 };
 
 export default function loginUser(state = initialState, action) {
+    debugger;
     switch (action.type) {
-        case POST_USER_DATA_LOGIN:
+        case LOGIN_POST_USER_DATA:
             return Object.assign({}, state, {
                 isFetchingLogin: true
             });
-        case STATUS_SUCCESS_LOGIN:
+        case LOGIN_STATUS_SUCCESS:
             return Object.assign({}, state, {
                 isFetchingLogin: false,
                 statusLogin: 'success'
             });
-        case STATUS_ERROR_LOGIN:
+        case LOGIN_STATUS_ERROR:
             return Object.assign({}, state, {
                 isFetchingLogin: false,
                 statusLogin: 'error',

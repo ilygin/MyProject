@@ -31,6 +31,7 @@ class MainPage extends React.Component {
 }
 
 function mapStateToProps (state) {
+    console.log(state);
     return {
         courses: state.courses,
         newUserState: state.newUser,
