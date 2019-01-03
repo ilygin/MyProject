@@ -8,13 +8,18 @@ export default class Account extends Component {
 
     async onLogout(e)  {
         e.preventDefault();
+        try {
+           await fetch('http://localhost:3000/api/logout');
+        }catch (error) {
+            console.log(`Error: ${error}`);
+        }
     }
 
     render() {
         return (
-            <div>
+            <div className=".d-flex col-sm">
                 <h1>Hello User!</h1>
-                <button onClick={this.onLogout} type="submit" className="btn btn-primary">Войти</button>
+                <button onClick={this.onLogout} type="submit" className="btn btn-primary">Выйти</button>
             </div>
         )
     }

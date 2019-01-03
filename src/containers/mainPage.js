@@ -10,16 +10,15 @@ import * as userAction from '../actions/action';
 class MainPage extends React.Component {
     constructor(props){
         super(props);
-        this.state = {
-        }
     }
+
     render() {
         const {checkAuthorizationUser} = this.props.userAction;
         const {isAuthorized} = this.props;
         return (
             <div>
                 <Header />
-                <MainPageContent isAuhtorized={isAuthorized} checkAuthorizationUser={checkAuthorizationUser}/>
+                <MainPageContent isAuthorized={isAuthorized} checkAuthorizationUser={checkAuthorizationUser}/>
             </div>
         )
     }
@@ -27,7 +26,7 @@ class MainPage extends React.Component {
 
 function mapStateToProps (state) {
     return {
-        isAuthorized: state.isAuthorizedUser
+        isAuthorized: state.isAuthorizedUser.isAuth
     }
 }
 
