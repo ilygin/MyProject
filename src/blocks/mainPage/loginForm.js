@@ -30,6 +30,9 @@ class LoginForm extends React.Component {
         let password = document.querySelector(".passwordInput").value;
         try {
             await this.props.logInUser(email, password);
+            if(this.props.loginUserState.statusLogin === "success"){
+                this.props.history.push(`/account`);
+            }
         } catch (e) {
             console.log("Error: ", e + "");
         }

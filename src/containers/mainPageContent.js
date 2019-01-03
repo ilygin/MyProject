@@ -1,6 +1,7 @@
 import React from 'react';
 import ListCourses from "./listCourse";
 import LoginForm from '../blocks/mainPage/loginForm';
+import Account from '../blocks/mainPage/account';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import * as userAction from '../actions/action';
@@ -10,22 +11,27 @@ class MainPageContent extends React.Component {
         super(props);
     }
 
-    async componentDidMount(){
-        try {
-            await this.props.checkAuthorizationUser();
-        }catch(e){
-            console.log(`Error: ${e}`);
-        }
-    }
+    // async componentWillUpdate(){
+    //     try {
+    //         await this.props.checkAuthorizationUser();
+    //     }catch(e){
+    //         console.log(`Error: ${e}`);
+    //     }
+    // }
 
     render() {
         const {courses, newUserState, loginUserState} = this.props;
         const {fetchCourses, signUpUser, logInUser} = this.props.userAction;
+        console.log(this.props);
+
+        let rightContent = this.props.isAuthorized ? (<Account/>):
+            (<LoginForm loginUserState={loginUserState} logInUser={logInUser} signUpUser={signUpUser} newUser={newUserState}/>);
+
         return (
             <div className = "container" >
                 <div className = "row main-page-row my-4" >
                     <ListCourses fetchCourses={fetchCourses} courses={courses}/>
-                    <LoginForm loginUserState={loginUserState} logInUser={logInUser} signUpUser={signUpUser} newUser={newUserState}/>
+                    {rightContent}
                 </div>
             </div>
         )
