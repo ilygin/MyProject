@@ -79,6 +79,14 @@ module.exports = function(app, knex, session){
         })
     });
 
+    app.get("/auth/isAuthorized", (req, res) => {
+        if(req.session.user){
+            res.send({isAuthorized:true});
+        }else {
+            res.send({isAuthorized: false});
+        }
+    });
+
     app.get("/course/*", checkLoginUser, (req, res, next)=>{
         next();
     });

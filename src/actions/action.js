@@ -171,3 +171,37 @@ export function logInUser(email, password) {
         return checkUser(email, password);
     }
 }
+
+export const AUTHORIZED_USER = "AUTHORIZED_USER";
+export const NOT_AUTHORIZED_USER = "NOT_AUTHORIZED_USER";
+
+export function authorizedUser() {
+    return {
+        type: AUTHORIZED_USER,
+    }
+}
+
+export function notAuthorizedUser() {
+    return {
+        type: NOT_AUTHORIZED_USER,
+    }
+}
+
+export function checkAuthorizationUser() {
+    return function (dispatch) {
+        const checkUser = async function() {
+            try {
+                let data = await fetch(`${URL}/auth/isAuthorized`);
+                let dataJson = await data.json();
+                if(dataJson.isAuthorized) {
+                    dispatch(authorizedUser());
+                }else {
+                    dispatch(notAuthorizedUser());
+                }
+            }catch(e) {
+                console.log(`Error: ${e}`);
+            }
+        };
+        return checkUser();
+    }
+}
