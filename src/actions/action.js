@@ -117,7 +117,7 @@ export function signUpUser(email, password) {
 export const LOGIN_POST_USER_DATA= "LOGIN_POST_USER_DATA";
 export const LOGIN_STATUS_SUCCESS = "LOGIN_STATUS_SUCCESS";
 export const LOGIN_STATUS_ERROR = "LOGIN_STATUS_ERROR";
-
+export const LOGIN_STATUS_FAILURE = "LOGIN_STATUS_FAILURE";
 export function checkUserData() {
     return {
         type: LOGIN_POST_USER_DATA
@@ -130,12 +130,19 @@ export function loginStatusSuccess() {
     }
 }
 
+export function loginStatusFailure() {
+    return {
+        type: LOGIN_STATUS_FAILURE,
+    }
+}
+
 export function loginStatusError(msg) {
     return {
         type: LOGIN_STATUS_ERROR,
         msg
     }
 }
+
 export function logInUser(email, password) {
     return function(dispatch) {
         dispatch(checkUserData());
@@ -161,7 +168,7 @@ export function logInUser(email, password) {
                 if (checkUserDataJson.status === "success") {
                     dispatch(loginStatusSuccess());
                 }else {
-                    dispatch(loginStatusError(checkUserDataJson.msg));
+                    dispatch(loginStatusFailure());
                 }
             }catch (e) {
                 dispatch(loginStatusError(e.toString()));
@@ -172,37 +179,22 @@ export function logInUser(email, password) {
     }
 }
 
-// export const AUTHORIZED_USER = "AUTHORIZED_USER";
-// export const NOT_AUTHORIZED_USER = "NOT_AUTHORIZED_USER";
-//
-// export function authorizedUser() {
-//     return {
-//         type: AUTHORIZED_USER,
-//     }
-// }
-//
-// export function notAuthorizedUser() {
-//     return {
-//         type: NOT_AUTHORIZED_USER,
-//     }
-// }
-//
-// export function checkAuthorizationUser() {
-//     return function (dispatch) {
-//         const checkUser = async function() {
-//             try {
-//                 let data = await fetch(`${URL}/auth/isAuthorized`);
-//                 let dataJson = await data.json();
-//                 debugger;
-//                 if(dataJson.isAuthorized) {
-//                     dispatch(authorizedUser());
-//                 }else {
-//                     dispatch(notAuthorizedUser());
-//                 }
-//             }catch(e) {
-//                 console.log(`Error: ${e}`);
-//             }
-//         };
-//         return checkUser();
-//     }
-// }
+export function checkAuthorizationUser() {
+    return function (dispatch) {
+        const checkUser = async function() {
+            try {
+                let data = await fetch(`${URL}/auth/isAuthorized`);
+                let dataJson = await data.json();
+                debugger;
+                if(dataJson.isAuthorized) {
+                    dispatch(loginStatusSuccess());
+                }else {
+                    dispatch(loginStatusFailure());
+                }
+            }catch(e) {
+                console.log(`Error: ${e}`);
+            }
+        };
+        return checkUser();
+    }
+}

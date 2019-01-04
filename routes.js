@@ -73,7 +73,7 @@ module.exports = function(app, knex, session){
         }
     });
 
-    app.get("/api/logout", (req, res) => {
+    app.get("/auth/logout", (req, res) => {
         console.log("logout");
         req.session.destroy(()=>{
             res.redirect("/");

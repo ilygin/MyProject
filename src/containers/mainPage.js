@@ -1,10 +1,12 @@
 import React from 'react';
 import Header from '../blocks/header';
-import MainPageContent from '../containers/mainPageContent'
+import LoginForm from '../blocks/mainPage/loginForm';
+import ListCourses from "../containers/listCourse";
 
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import * as userAction from '../actions/action';
+
 
 
 class MainPage extends React.Component {
@@ -13,12 +15,17 @@ class MainPage extends React.Component {
     }
 
     render() {
-        const {checkAuthorizationUser} = this.props.userAction;
-        const {isAuthorized} = this.props;
+        const {courses, isAuth, loginUser, newUser} = this.props;
+        const {fetchCourses, signUpUser, logInUser} = this.props.userAction;
         return (
             <div>
                 <Header />
-                <MainPageContent isAuthorized={isAuthorized} checkAuthorizationUser={checkAuthorizationUser}/>
+                <div className = "container" >
+                    <div className = "row main-page-row my-4" >
+                        <ListCourses fetchCourses={fetchCourses} courses={courses}/>
+                        <LoginForm newUser={newUser} loginUser={loginUser} isAuth={isAuth} logInUser={logInUser} signUpUser={signUpUser}/>
+                    </div>
+                </div>
             </div>
         )
     }
@@ -26,7 +33,9 @@ class MainPage extends React.Component {
 
 function mapStateToProps (state) {
     return {
-        isAuthorized: state.isAuthorizedUser.isAuth
+        courses: state.courses,
+        loginUser: state.loginUser,
+        newUser: state.newUser
     }
 }
 

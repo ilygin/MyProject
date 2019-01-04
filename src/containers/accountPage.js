@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from '../blocks/header';
-import MainPageContent from '../containers/mainPageContent'
+import Account from '../blocks/mainPage/account';
+import ListCourses from "../containers/listCourse";
 
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
@@ -13,12 +14,17 @@ class AccountPage extends React.Component {
     }
 
     render() {
-        const {checkAuthorizationUser} = this.props.userAction;
-        const {isAuthorized} = this.props;
+        const {courses} = this.props;
+        const {fetchCourses} = this.props.userAction;
         return (
             <div>
                 <Header />
-                <MainPageContent isAuthorized={isAuthorized} checkAuthorizationUser={checkAuthorizationUser}/>
+                <div className = "container" >
+                    <div className = "row main-page-row my-4" >
+                        <ListCourses fetchCourses={fetchCourses} courses={courses}/>
+                        <Account/>
+                    </div>
+                </div>
             </div>
         )
     }
@@ -26,7 +32,7 @@ class AccountPage extends React.Component {
 
 function mapStateToProps (state) {
     return {
-        isAuthorized: state.isAuthorizedUser.isAuth
+        courses: state.courses
     }
 }
 
