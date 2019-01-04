@@ -1,5 +1,6 @@
 import React from 'react';
-import {statusError} from "../../actions/action";
+import { Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom'
 
 class LoginForm extends React.Component {
     constructor(props) {
@@ -7,7 +8,8 @@ class LoginForm extends React.Component {
         this.state = {
             username: '',
             password: '',
-            message: ''
+            message: '',
+            redirectToPreviousRoute: false
         };
         this.onSignUpClick = this.onSignUpClick.bind(this);
         this.onLogInUserClick = this.onLogInUserClick.bind(this);
@@ -24,21 +26,22 @@ class LoginForm extends React.Component {
         }
     }
 
-    async onLogInUserClick(e)  {
-        e.preventDefault();
+    async onLogInUserClick()  {
         let email = document.querySelector(".emailInput").value;
         let password = document.querySelector(".passwordInput").value;
         try {
             await this.props.logInUser(email, password);
-            if(this.props.loginUserState.statusLogin === "success"){
-                this.props.history.push(`/account`);
-            }
+
         } catch (e) {
             console.log("Error: ", e + "");
         }
     }
 
     render() {
+        // console.log(this.props);
+        if (this.props.loginUser.isAuth) {
+            return <Redirect to={"/protected"} />
+        }
         return (
             <div className=".d-flex col-sm">
                 <form method="post" className="registrationForm">
