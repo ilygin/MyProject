@@ -14,13 +14,13 @@ const knex = require('knex')({
     client: 'mysql',
     connection: connectionDb
 });
-//test ssh-key
+
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-/* for dev mode*/
+/* for dev mode
 app.use(webpackDevMiddleware(compiler));
-/**/
+*/
 app.use(express.static(path.join(__dirname, 'dist')));
 require('./routes')(app, knex, session);
 
