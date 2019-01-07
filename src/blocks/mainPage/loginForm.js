@@ -43,7 +43,6 @@ class LoginForm extends React.Component {
     }
 
     render() {
-        debugger;
         if (this.props.loginUser.isAuth) {
             return <Redirect to={"/account"} />
         }else if (!this.props.loginUser.isFetching && !this.props.loginUser.isAuth && this.props.loginUser.isAuth !== null) {
@@ -74,3 +73,4 @@ class LoginForm extends React.Component {
 }
 
 export default LoginForm;
+ubikidfeaz
