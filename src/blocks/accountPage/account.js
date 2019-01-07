@@ -9,7 +9,7 @@ export default class Account extends Component {
     async onLogout(e)  {
         e.preventDefault();
         try {
-           await fetch('http://localhost:3000/auth/logout');
+           await this.props.logOutUser();
         }catch (error) {
             console.log(`Error: ${error}`);
         }

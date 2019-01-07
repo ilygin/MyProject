@@ -1,10 +1,10 @@
-import {LOGIN_POST_USER_DATA, LOGIN_STATUS_ERROR, LOGIN_STATUS_SUCCESS, LOGIN_STATUS_FAILURE} from '../actions/action';
+import {LOGIN_POST_USER_DATA, LOGIN_STATUS_ERROR, LOGIN_STATUS_SUCCESS, LOGIN_STATUS_FAILURE, LOGOUT_USER} from '../actions/action';
 
 const initialState = {
     isFetchingLogin: false,
     statusLogin: "",
     msgLogin: "",
-    isAuth: false
+    isAuth: null
 };
 
 export default function loginUser(state = initialState, action) {
@@ -24,13 +24,20 @@ export default function loginUser(state = initialState, action) {
             return Object.assign({}, state, {
                 isFetchingLogin: false,
                 statusLogin: "failure",
-                msgLogin: "",
+                msgLogin: action.msgLogin,
                 isAuth: false
             });
         case LOGIN_STATUS_ERROR:
             return Object.assign({}, state, {
                 isFetchingLogin: false,
                 statusLogin: 'error',
+                msgLogin: action.msgLogin,
+                isAuth: false
+            });
+        case LOGOUT_USER:
+            return Object.assign({}, state, {
+                isFetchingLogin: false,
+                statusLogin: '',
                 msgLogin: action.msg,
                 isAuth: false
             });
