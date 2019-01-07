@@ -21,7 +21,7 @@ ReactDOM.render(
             <Switch>
                 <Route exact path='/' component={mainPage}/>
                 <Route path={'/new_course/:id/:typePage/:id'} component={newCourse}/>
-                <ProtectRouter path='/protected' component={AccountPage}/>
+                <ProtectRouter path='/account' component={AccountPage}/>
             </Switch>
         </BrowserRouter>
     </Provider>,

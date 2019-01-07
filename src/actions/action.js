@@ -90,7 +90,7 @@ export function signUpUser(email, password) {
             } else {
                 const registerNewUser = async (email, password) => {
                     try {
-                        await fetch(`${URL}/api/signup/`, {
+                        await fetch(`${URL}/auth/signup/`, {
                             method: 'post',
                             credentials: 'include',
                             headers: {
@@ -118,6 +118,8 @@ export const LOGIN_POST_USER_DATA= "LOGIN_POST_USER_DATA";
 export const LOGIN_STATUS_SUCCESS = "LOGIN_STATUS_SUCCESS";
 export const LOGIN_STATUS_ERROR = "LOGIN_STATUS_ERROR";
 export const LOGIN_STATUS_FAILURE = "LOGIN_STATUS_FAILURE";
+export const LOGOUT_USER = "LOGOUT_USER";
+
 export function checkUserData() {
     return {
         type: LOGIN_POST_USER_DATA
@@ -130,9 +132,10 @@ export function loginStatusSuccess() {
     }
 }
 
-export function loginStatusFailure() {
+export function loginStatusFailure(msgLogin) {
     return {
         type: LOGIN_STATUS_FAILURE,
+        msgLogin
     }
 }
 
@@ -140,6 +143,12 @@ export function loginStatusError(msg) {
     return {
         type: LOGIN_STATUS_ERROR,
         msg
+    }
+}
+
+export function logoutUser() {
+    return {
+        type: LOGOUT_USER
     }
 }
 
@@ -152,7 +161,7 @@ export function logInUser(email, password) {
         }
         const checkUser = async (email, password) => {
             try {
-                let data = await fetch(`${URL}/api/logInUser/`, {
+                let data = await fetch(`${URL}/auth/logInUser/`, {
                     method: 'post',
                     credentials: 'include',
                     headers: {
@@ -168,11 +177,10 @@ export function logInUser(email, password) {
                 if (checkUserDataJson.status === "success") {
                     dispatch(loginStatusSuccess());
                 }else {
-                    dispatch(loginStatusFailure());
+                    dispatch(loginStatusFailure(checkUserDataJson.msg));
                 }
             }catch (e) {
                 dispatch(loginStatusError(e.toString()));
-                return;
             }
         };
         return checkUser(email, password);
@@ -181,7 +189,7 @@ export function logInUser(email, password) {
 
 export function checkAuthorizationUser() {
     return function (dispatch) {
-        const checkUser = async function() {
+        const checkUser = async () => {
             try {
                 let data = await fetch(`${URL}/auth/isAuthorized`);
                 let dataJson = await data.json();
@@ -192,9 +200,23 @@ export function checkAuthorizationUser() {
                     dispatch(loginStatusFailure());
                 }
             }catch(e) {
-                console.log(`Error: ${e}`);
+                dispatch(loginStatusError(e.toString()));
             }
         };
         return checkUser();
+    }
+}
+
+export function logOutUser() {
+    return function (dispatch) {
+        const logout = async function() {
+            try {
+                await fetch(`${URL}/auth/logout`);
+                dispatch(logoutUser());
+            }catch(e) {
+                dispatch(loginStatusError(e.toString()));
+            }
+        };
+        return logout();
     }
 }

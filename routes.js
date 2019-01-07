@@ -33,7 +33,7 @@ module.exports = function(app, knex, session){
         }
     }
 
-    app.post('/api/signup', async (req, res)=> {
+    app.post('/auth/signup', async (req, res)=> {
         if (req.body.email && req.body.password) {
             const hashPassport = bcrypt.hashSync(req.body.password, 10);
             const currentDate = new Date().toUTCString();
@@ -51,7 +51,7 @@ module.exports = function(app, knex, session){
         }
     });
 
-    app.post('/api/logInUser', async (req, res)=> {
+    app.post('/auth/logInUser', async (req, res)=> {
         try {
             const match = await knex
                 .select("id", "password").from("Users").where({email: req.body.email});
@@ -88,7 +88,7 @@ module.exports = function(app, knex, session){
         }
     });
 
-    app.get("/course/*", checkLoginUser, (req, res, next)=>{
+    app.get("/account", checkLoginUser, (req, res, next)=>{
         next();
     });
 

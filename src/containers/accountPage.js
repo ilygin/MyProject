@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from '../blocks/header';
-import Account from '../blocks/mainPage/account';
+import Account from '../blocks/AccountPage/account';
 import ListCourses from "../containers/listCourse";
 
 import { bindActionCreators } from 'redux'
@@ -15,14 +15,14 @@ class AccountPage extends React.Component {
 
     render() {
         const {courses} = this.props;
-        const {fetchCourses} = this.props.userAction;
+        const {fetchCourses, logOutUser} = this.props.userAction;
         return (
             <div>
                 <Header />
                 <div className = "container" >
                     <div className = "row main-page-row my-4" >
                         <ListCourses fetchCourses={fetchCourses} courses={courses}/>
-                        <Account/>
+                        <Account logOutUser={logOutUser} />
                     </div>
                 </div>
             </div>

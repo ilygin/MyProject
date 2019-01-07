@@ -16,14 +16,16 @@ class MainPage extends React.Component {
 
     render() {
         const {courses, isAuth, loginUser, newUser} = this.props;
-        const {fetchCourses, signUpUser, logInUser} = this.props.userAction;
+        const {fetchCourses, signUpUser, logInUser, checkAuthorizationUser} = this.props.userAction;
         return (
             <div>
                 <Header />
                 <div className = "container" >
                     <div className = "row main-page-row my-4" >
                         <ListCourses fetchCourses={fetchCourses} courses={courses}/>
-                        <LoginForm newUser={newUser} loginUser={loginUser} isAuth={isAuth} logInUser={logInUser} signUpUser={signUpUser}/>
+                        <div className=".d-flex col-sm">
+                            <LoginForm checkAuthorizationUser={checkAuthorizationUser} newUser={newUser} loginUser={loginUser} isAuth={isAuth} logInUser={logInUser} signUpUser={signUpUser}/>
+                        </div>
                     </div>
                 </div>
             </div>
