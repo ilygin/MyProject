@@ -74,7 +74,6 @@ module.exports = function(app, knex, session){
     });
 
     app.get("/auth/logout", (req, res) => {
-        console.log("logout");
         req.session.destroy(()=>{
             res.redirect("/");
         })
