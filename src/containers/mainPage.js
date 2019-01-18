@@ -15,7 +15,7 @@ class MainPage extends React.Component {
     }
 
     render() {
-        const {courses, isAuth, loginUser, newUser} = this.props;
+        const {courses, loginUser, newUser} = this.props;
         const {fetchCourses, signUpUser, logInUser, checkAuthorizationUser} = this.props.userAction;
         return (
             <div>
@@ -24,7 +24,7 @@ class MainPage extends React.Component {
                     <div className = "row main-page-row my-4" >
                         <ListCourses fetchCourses={fetchCourses} courses={courses}/>
                         <div className=".d-flex col-sm">
-                            <LoginForm checkAuthorizationUser={checkAuthorizationUser} newUser={newUser} loginUser={loginUser} isAuth={isAuth} logInUser={logInUser} signUpUser={signUpUser}/>
+                            <LoginForm checkAuthorizationUser={checkAuthorizationUser} newUser={newUser} loginUser={loginUser}  logInUser={logInUser} signUpUser={signUpUser}/>
                         </div>
                     </div>
                 </div>

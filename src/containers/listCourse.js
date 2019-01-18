@@ -36,14 +36,21 @@ class ListCourses extends React.Component {
         const list = this.state.courses.map(item =>
             <Course key={item.id.toString()} course_name={item.course_name} id={item.id}/>
         );
+        
+        const {isAuth} = this.props;
+        console.log(this.props);
+        const buttonCreateCourse =  isAuth ? (
+            <Link to={"/createNewCourse/" + this.state.lastCourseId + "/titlePage/0"} className="col-3">
+                <button className={"btn btn-outline-secondary"} type="submit">Создать курс</button>
+            </Link>
+        ) : false;
+
         return (
             <div className = "col-sm" >
                 <fieldset className="form-row mb-1">
                     <form className="form-group mb-1 d-flex">
-                        <input className="form-control mr-1 col-9 courseName" type="text" placeholder="Поиск" />
-                        <Link to={"/createNewCourse/" + this.state.lastCourseId + "/titlePage/0"} className="col">
-                            <button className={"btn btn-outline-secondary"} type="submit">Создать курс</button>
-                        </Link>
+                        <input className="form-control mr-1 col courseName" type="text" placeholder="Поиск" />
+                        {buttonCreateCourse}
                     </form>
                 </fieldset>
                 <ul className="card-deck d-flex flex-column">
@@ -55,7 +62,8 @@ class ListCourses extends React.Component {
 }
 function mapStateToProps (state) {
     return {
-        courses: state.courses.items
+        courses: state.courses.items,
+        isAuth: state.loginUser.isAuth
     }
 }
 
