@@ -42,7 +42,7 @@ class NewSidebar extends React.Component {
             let liClassName = (item.type === "unit"||item.type === "titlePage") ? ("list-group-item list-group-item-action") : ("sectionPadding list-group-item list-group-item-action");
             return (
                 <li>
-                    <Link to = {index===0 ? "/new_course/6/"+ item.type +"Э/0" :"/new_course/6/" + item.type +"/" + index}>
+                    <Link to = {index===0 ? "/createNewCourse/6/"+ item.type +"/0" :"/createNewCourse/6/" + item.type +"/" + index}>
                         <li key={"pagId" + index} onClick={this.onEditItemActive.bind(this, index)} className={liClassName}>
                             {(item.type === "unit"||item.type === "titlePage") ? item.title : String.fromCharCode(8226)+ " " + item.title }
                          </li>
