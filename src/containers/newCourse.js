@@ -12,10 +12,10 @@ class NewCourse extends React.Component {
         super(props);
         this.state = {title: ""}
     }
-
-    componentDidUpdate() {
-        this.setState({title: "Test title"+ this.props.match.params.pageNumber});
-    }
+    //
+    // componentDidUpdate() {
+    //     this.setState({title: "Test title"});
+    // }
 
     render() {
         const {savePageData} = this.props.userAction;
