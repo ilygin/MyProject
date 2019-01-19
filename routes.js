@@ -91,6 +91,20 @@ module.exports = function(app, knex, session){
         next();
     });
 
+    app.post('/api/newCourse/savePageData', async (req, res)=> {
+        let currentDate = new Date().toUTCString();
+        try {
+            await knex('CourseContent')
+                .insert({updatedAt: currentDate,
+                    updatedBy: req.session.user.id,
+                    pageContent: req.body.content
+                });
+            res.status(200).send({status: "success"});
+        }catch (e) {
+            console.log(e);
+            res.status(503).send({status: "error", msg: e});
+        }
+    });
     app.get("*", (req, res) => {
         res.sendFile(__dirname + '/dist/index.html')
     });

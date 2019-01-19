@@ -2,6 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'react-quill/dist/quill.snow.css';
+import "react-quill/dist/quill.bubble.css";
+//import 'prismjs/themes/prism.css';
 import './style.css';
 
 import mainPage from './containers/mainPage';
@@ -11,7 +14,7 @@ import ProtectRouter from './containers/privateRoute';
 
 import {Provider} from "react-redux";
 import configurateStore from './store/configurateStore';
-import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 const store = configurateStore();
 

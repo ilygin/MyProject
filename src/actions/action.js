@@ -219,3 +219,58 @@ export function logOutUser() {
         return logout();
     }
 }
+export const POST_PAGE = "POST_PAGE";
+export const STATUS_SAVING_PAGE_SUCCESS = "STATUS_SAVING_PAGE_SUCCESS";
+export const STATUS_SAVING_PAGE_ERROR = "STATUS_SAVING_PAGE_ERROR";
+
+export function postPage() {
+    return {
+        type: POST_PAGE
+    }
+}
+
+export function statusSavingPageSuccess() {
+    return {
+        type: STATUS_SAVING_PAGE_SUCCESS,
+
+    }
+}
+
+export function statusSavingPageError(msg) {
+    return {
+        type: STATUS_SAVING_PAGE_ERROR,
+        msg
+    }
+}
+
+export function savePageData(title, content) {
+    return function (dispatch) {
+        dispatch(postPage());
+        const savePageData = async(title, content) => {
+            try {
+                let data = await fetch(`${URL}/api/newCourse/savePageData`, {
+                    method: 'post',
+                    credentials: 'include',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        title,
+                        content
+                    })
+                });
+                let resultJson = await data.json();
+                console.log(`resultJson = ${resultJson}`);
+                if (resultJson === 'success') {
+                    dispatch(statusSavingPageSuccess());
+                } else {
+                    dispatch(statusSavingPageError("Ошибка с доступом к бд"));
+                }
+            } catch (e) {
+                dispatch(statusSavingPageError(e.toString()));
+            }
+        };
+        return savePageData(title, content);
+    }
+}
