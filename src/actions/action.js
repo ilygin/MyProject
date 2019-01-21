@@ -1,11 +1,7 @@
 export const REQUEST_COURSE = 'REQUEST_COURSE';
 export const RECEIVE_COURSE = 'RECEIVE_COURSE';
 const URL = "http://77.222.54.255";  /**/
-//<<<<<<< HEAD
 /* for dev mode  
-=======
-/* for dev mode
->>>>>>> EditorRefactoring
 const URL = "http://localhost:3000";
 /**/
 export function requestCourses() {
@@ -247,7 +243,7 @@ export function statusSavingPageError(msg) {
     }
 }
 
-export function savePageData(title, content) {
+export function savePageData(title, content, courseId, pageNumber) {
     return function (dispatch) {
         dispatch(postPage());
         const savePageData = async(title, content) => {
@@ -261,7 +257,9 @@ export function savePageData(title, content) {
                     },
                     body: JSON.stringify({
                         title,
-                        content
+                        content, 
+                        courseId, 
+                        pageNumber
                     })
                 });
                 let resultJson = await data.json();
@@ -275,6 +273,6 @@ export function savePageData(title, content) {
                 dispatch(statusSavingPageError(e.toString()));
             }
         };
-        return savePageData(title, content);
+        return savePageData(title, content, courseId, pageNumber);
     }
 }
