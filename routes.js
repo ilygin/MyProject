@@ -97,7 +97,9 @@ module.exports = function(app, knex, session){
             await knex('CourseContent')
                 .insert({updatedAt: currentDate,
                     updatedBy: req.session.user.id,
-                    pageContent: req.body.content
+                    pageContent: req.body.content,
+                    courseId: req.body.courseId,
+                    numberPage: req.body.pageNumber
                 });
             res.status(200).send({status: "success"});
         }catch (e) {

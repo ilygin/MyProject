@@ -20,7 +20,7 @@ class NewCoursePage extends React.Component {
         e.preventDefault();
         let title = document.querySelector(".titleCourse").value;
         try {
-            this.props.savePageData(title, this.state.text);
+            this.props.savePageData(title, this.state.text, this.props.pathParams.courseId, this.props.pathParams.pageNumber);
         }catch (e) {
             console.log(e);
         }

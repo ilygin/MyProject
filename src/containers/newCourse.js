@@ -25,7 +25,7 @@ class NewCourse extends React.Component {
                 <div className = "container-fluid" >
                     <div className = "row">
                         <NewSidebar />
-                        <NewCourseContent title={this.state.title} savePageData={savePageData}/>
+                        <NewCourseContent pathParams = {this.props.match.params} title={this.state.title} savePageData={savePageData}/>
                     </div>
                 </div>
             </div>
