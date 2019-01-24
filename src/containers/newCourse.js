@@ -18,14 +18,15 @@ class NewCourse extends React.Component {
     // }
 
     render() {
-        const {savePageData} = this.props.userAction;
+        const {savePageData, fetchCourseData} = this.props.userAction;
+        const {courseData} = this.props;
         return (
             <div>
                 <Header />
                 <div className = "container-fluid" >
                     <div className = "row">
                         <NewSidebar />
-                        <NewCourseContent pathParams = {this.props.match.params} title={this.state.title} savePageData={savePageData}/>
+                        <NewCourseContent fetchCourseData={fetchCourseData} courseData={courseData} pathParams = {this.props.match.params} title={this.state.title} savePageData={savePageData}/>
                     </div>
                 </div>
             </div>
@@ -34,7 +35,9 @@ class NewCourse extends React.Component {
 }
 
 function mapStateToProps (state) {
-    return {}
+    return {
+        courseData: state.courseData
+    }
 }
 
 function mapDispatchToProps(dispatch) {
