@@ -32,7 +32,7 @@ class AccountPage extends React.Component {
 
 function mapStateToProps (state) {
     return {
-        courses: state.courses
+        courses: state.courses,
     }
 }
 

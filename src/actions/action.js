@@ -1,7 +1,7 @@
 export const REQUEST_COURSE = 'REQUEST_COURSE';
 export const RECEIVE_COURSE = 'RECEIVE_COURSE';
 const URL = "http://77.222.54.255";  /**/
-/* for dev mode  
+/* for dev mode      
 const URL = "http://localhost:3000";
 /**/
 export function requestCourses() {
@@ -274,5 +274,38 @@ export function savePageData(title, content, courseId, pageNumber) {
             }
         };
         return savePageData(title, content, courseId, pageNumber);
+    }
+}
+
+export const REQUEST_COURSE_DATA = 'REQUEST_COURSE_DATA';
+export const RECEIVE_COURSE_DATA = 'RECEIVE_COURSE_DATA';
+
+export function requestCoursesData() {
+    return {
+        type: REQUEST_COURSE_DATA
+    }
+}
+
+export function receiveCoursesData(json) {
+    return {
+        type: RECEIVE_COURSE_DATA,
+        courseData: json
+    }
+}
+
+export function fetchCourseData(idCourse) {
+    return function (dispatch) {
+        dispatch(requestCoursesData());
+        const request = async (idCourse) => {
+            const response = await fetch(`${URL}/api/loadCourseData/${idCourse}.json`);
+            try {
+                const json = await response.json();
+                console.log(json);
+                dispatch(receiveCoursesData(json));
+            } catch (e) {
+                console.log(e);
+            }
+        };
+        return request(idCourse);
     }
 }

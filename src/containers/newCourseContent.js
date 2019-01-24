@@ -16,6 +16,14 @@ class NewCoursePage extends React.Component {
         this.setState({ text: value })
     }
 
+    async componentDidMount() {
+        try {
+            await this.props.fetchCourseData(this.props.pathParams.courseId);
+        }catch (e) {
+            console.log(e);
+        }
+    }
+
     onSavePageContent(e) {
         e.preventDefault();
         let title = document.querySelector(".titleCourse").value;
@@ -27,11 +35,14 @@ class NewCoursePage extends React.Component {
     }
 
     render() {
+        let title = this.props.pathParams.typePage === "titlePage" ? "Название курса:" :
+            this.props.pathParams.typePage === "section" ?  "Название раздела:" : "Название главы:";
+        console.log(this.props);
         return (
             <div className="col-sm-9 col-sm-offset-3 col-md-8 mt-2 offset-md-1">
                 <div className="form-group">
                     <label className="control-label" htmlFor="inputDefault">
-                        <h3>Название курса: </h3>
+                        <h3>{title}</h3>
                     </label>
                     <input type="text" className="form-control titleCourse" id="inputDefault" placeholder={this.props.title}/>
                 </div>
@@ -39,11 +50,11 @@ class NewCoursePage extends React.Component {
                     <h3>Содержание курса: </h3>
                 </div>
                 <div>
-                    <ReactQuill value={this.state.text}
+                    <ReactQuill  value={this.props.courseData.courseDataItems[0] !== undefined ? this.props.courseData.courseDataItems[0].pageContent: ""}
                                 onChange={this.handleEditorChange} />
                 </div>
                 <div>
-                    <button onClick={this.onSavePageContent}>Сохранить</button>
+                    <button onClick={this.onSavePageContent} className="btn btn-primary">Сохранить страницу</button>
                 </div>
             </div>
         )

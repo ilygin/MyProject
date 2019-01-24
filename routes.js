@@ -107,6 +107,13 @@ module.exports = function(app, knex, session){
             res.status(503).send({status: "error", msg: e});
         }
     });
+    app.get('/api/loadCourseData/:idCourse.json', async (req, res)=>{
+        console.log(req);
+        const data = await knex
+            .select().from('CourseContent');
+        res.send(data);
+    });
+
     app.get("*", (req, res) => {
         res.sendFile(__dirname + '/dist/index.html')
     });
