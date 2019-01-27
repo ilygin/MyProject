@@ -7,11 +7,8 @@ export default class Course extends Component {
         let link = "/course/" + id;
         return (
             <Link to={link} className="link-course">
-                <li className="card mb-2 mr-2 ml-2">
-                    <div className="card-body">
-                        <h3 className="card-title">{course_name}</h3>
-                        <p className="card-text">Небольшое описание курса, перечисляющее основные темы.</p>
-                    </div>
+                <li className="list-courses__item">
+                    <h3 className="card-title">{course_name}</h3>
                 </li>
             </Link>
         )

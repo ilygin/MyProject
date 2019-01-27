@@ -20,14 +20,14 @@ class MainPage extends React.Component {
         return (
             <div>
                 <Header />
-                <div className = "container" >
-                    <div className = "row main-page-row my-4" >
-                        <ListCourses fetchCourses={fetchCourses} courses={courses}/>
-                        <div className=".d-flex col-sm">
+                <div className = "main-block grid-width">
+                        <div className = "main-block__left-container">
+                            <ListCourses fetchCourses={fetchCourses} courses={courses}/>
+                        </div>
+                        <div className={"main-block__right-container"}>
                             <LoginForm checkAuthorizationUser={checkAuthorizationUser} newUser={newUser} loginUser={loginUser}  logInUser={logInUser} signUpUser={signUpUser}/>
                         </div>
                     </div>
-                </div>
             </div>
         )
     }

@@ -5,14 +5,13 @@ class Header extends React.Component {
     render() {
         const titleCourse = "";
         return (
-            <nav className="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-                <Link to='/' className="logo">WebLib</Link>
-                <ul className="navbar-nav mr-auto">
-                    <li className="nav-item active">
-                        <a className="nav-link" href="#">{titleCourse} <span className="sr-only">(current)</span></a>
-                    </li>
-                </ul>
-            </nav>
+            <header className="header-block">
+                <div className="grid-width">
+                    <Link to='/'>
+                        <p className="header-block__logo">WebLib</p>
+                    </Link>
+                </div>
+            </header>
         )
     }
 }

@@ -1,0 +1,116 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    line-height: 1.15;
+}
+
+body {
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",
+                    Roboto,"Helvetica Neue",Arial,sans-serif,
+                    "Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+}
+
+p {
+    margin-bottom: 0;
+}
+
+.grid-width {
+    width: 68.750em;
+    margin: auto;
+}
+
+a {
+    color: #000000;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+h3 {
+    font-size: 1.75em;
+    font-family: inherit;
+    font-weight: 500;
+    line-height: 1.2;
+    color: inherit;
+}
+
+
+.header-block {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 2.25em;
+    width: 100%;
+    background-color: #343a40;
+}
+    .header-block__logo {
+        color: #eeeeee;
+    }
+
+.main-block {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1.5em;
+}
+    .main-block__left-container {}
+        .left-container__search-block {
+            display: flex;
+            flex-direction: row;
+            width: 34.375em;
+            height: 2.25em;
+        }
+            .search-block__input {
+                width: 100%;
+                padding: 0.375em 0.75em;
+                border: 1px solid rgba(0,0,0,.525);
+                border-radius: .25rem;
+                line-height: 1.5;
+                color: #495057;
+                background-color: #fff;
+            }
+
+            .search-block__button {
+                width: 6em;
+                padding: 0.375em 0.75em;
+                margin-left: 0.75em;
+                color: #6c757d;
+                background-color: transparent;
+                background-image: none;
+                border-color: rgba(0,0,0,.425);
+            }
+
+        .left-container__list-courses {
+            list-style-type: none;
+        }
+            .list-courses__item {
+                display: flex;
+                align-items: center;
+                height: 4em;
+                margin-top: 0.75em;
+                padding-left: 1.25em;
+                border: 1px solid rgba(0,0,0,.425);
+                background-color: #fff;
+                background-clip: border-box;
+                border-radius: .25rem;
+                color: #000;
+                font-weight: 600;
+                line-height: 1.5;
+                word-wrap: break-word;
+            }
+
+            .list-courses__item:hover {
+                color: #0056b3;
+                border-color: #d0d0d0;
+                background-color: #eeeeee;
+            }
+
+    .main-block__right-container {}
