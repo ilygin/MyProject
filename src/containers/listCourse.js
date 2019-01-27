@@ -41,19 +41,18 @@ class ListCourses extends React.Component {
         console.log(this.props);
         const buttonCreateCourse =  isAuth ? (
             <Link to={"/createNewCourse/" + this.state.lastCourseId + "/titlePage/0"} className="col-3">
-                <button className={"btn btn-outline-secondary"} type="submit">Создать курс</button>
+                <button className={"search-block__button"} type="submit">Создать курс</button>
             </Link>
         ) : false;
 
         return (
-            <div className = "col-sm" >
-                <fieldset className="form-row mb-1">
-                    <form className="form-group mb-1 d-flex">
-                        <input className="form-control mr-1 col courseName" type="text" placeholder="Поиск" />
-                        {buttonCreateCourse}
-                    </form>
-                </fieldset>
-                <ul className="card-deck d-flex flex-column">
+            <div>
+                <div className="left-container__search-block">
+                    <input className="search-block__input" type="text" placeholder="Поиск" />
+                    {buttonCreateCourse}
+                </div>
+
+                <ul className="left-container__list-courses">
                     {list}
                 </ul>
             </div>
