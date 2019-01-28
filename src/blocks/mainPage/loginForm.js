@@ -49,9 +49,9 @@ class LoginForm extends React.Component {
             return (
                 <div className="right-container__login-form">
                         <div className="login-form__inputs-group">
-                            <input type="email" className="inputs-group__item" aria-describedby="emailHelp"
+                            <input type="email" className="inputs-group__item emailInput" aria-describedby="emailHelp"
                                    placeholder="Почта"/>
-                            <input type="password" className="inputs-group__item"
+                            <input type="password" className="inputs-group__item passwordInput"
                                    placeholder="Пароль"/>
                         </div>
                         {this.props.newUser.status === "error" ? <div><h3>{this.props.newUser.msg}</h3></div> :
