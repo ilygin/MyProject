@@ -1,180 +1,217 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
 }
 
 html {
-    line-height: 1.15;
+	line-height: 1.15;
 }
 
 body {
-    font-size: 16px;
-    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",
-                    Roboto,"Helvetica Neue",Arial,sans-serif,
-                    "Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+	font-size: 16px;
+	font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",
+					Roboto,"Helvetica Neue",Arial,sans-serif,
+					"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
 }
 
 input {
-    font-size: 16px;
+	font-size: 16px;
 }
 
 p {
-    margin-bottom: 0;
+	margin-bottom: 0;
 }
 
 .grid-width {
-    width: 68.750em;
-    margin: auto;
+	width: 68.750em;
+	margin: auto;
 }
 
 a {
-    color: #000000;
-    text-decoration: none;
+	color: #000000;
+	text-decoration: none;
 }
 
 a:hover {
-    text-decoration: none;
+	text-decoration: none;
 }
 
 h3 {
-    font-size: 1.75em;
-    font-family: inherit;
-    font-weight: 500;
-    line-height: 1.2;
-    color: inherit;
+	font-size: 1.75em;
+	font-family: inherit;
+	font-weight: 500;
+	line-height: 1.2;
+	color: inherit;
 }
 
 
 .header-block {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    height: 2.500em;
-    width: 100%;
-    background-color: #343a40;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	height: 2.500em;
+	width: 100%;
+	background-color: #343a40;
 }
-    .header-block__logo {
-        color: #eeeeee;
-    }
+	.header-block__logo {
+		color: #eeeeee;
+	}
 
 .main-block {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin-top: 1.5em;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: baseline;
+	margin-top: 1.5em;
 }
-    .main-block__left-container {}
-        .left-container__search-block {
-            display: flex;
-            flex-direction: row;
-            width: 34.375em;
-            height: 2.25em;
-        }
-            .search-block__input {
-                width: 100%;
-                padding: 0.375em 0.75em;
-                border: 1px solid rgba(0,0,0,.525);
-                border-radius: .25rem;
-                line-height: 1.5;
-                color: #495057;
-                background-color: #fff;
-            }
+	.main-block__left-container {}
+		.left-container__search-block {
+			display: flex;
+			flex-direction: row;
+			width: 34.375em;
+			height: 2.25em;
+		}
+			.search-block__input {
+				width: 100%;
+				padding: 0.375em 0.75em;
+				border: 1px solid rgba(0,0,0,.225);
+				border-radius: .25rem;
+				line-height: 1.5;
+				color: #495057;
+				background-color: #fff;
+			}
 
-            .search-block__button {
-                width: 6em;
-                padding: 0.375em 0.75em;
-                margin-left: 0.75em;
-                color: #6c757d;
-                background-color: transparent;
-                background-image: none;
-                border-color: rgba(0,0,0,.425);
-            }
+			.search-block__button {
+				width: 8em;
+				padding: 0.3em 0em;
+				margin-left: 0.75em;
+				background-color: #fff;
+				border: 1px solid rgba(0,0,0,.625);
+				border-radius: .25rem;
+				line-height: 1.5;
+				color: #000;
+				font-size: 16px;
+				font-weight: 600;
+				cursor: pointer;
+			}
 
-        .left-container__list-courses {
-            list-style-type: none;
-        }
-            .list-courses__item {
-                display: flex;
-                align-items: center;
-                height: 5.35em;
-                margin-top: 0.75em;
-                padding-left: 1.25em;
-                border: 1px solid rgba(0,0,0,.425);
-                background-color: #fff;
-                background-clip: border-box;
-                border-radius: .25rem;
-                color: #000;
-                font-weight: 600;
-                line-height: 1.5;
-                word-wrap: break-word;
-            }
+			.search-block__button:hover {
+				color: #eee;
+				background-color: #6c757d;
+				border-color: #6c757d;
+			}
 
-            .list-courses__item:hover {
-                color: #0056b3;
-                border-color: #d0d0d0;
-                background-color: #eeeeee;
-            }
+		.left-container__list-courses {
+			list-style-type: none;
+		}
+			.list-courses__item {
+				display: flex;
+				align-items: center;
+				height: 5.35em;
+				margin-top: 0.75em;
+				padding-left: 1.25em;
+				border: 1px solid rgba(0,0,0,.225);
+				background-color: #fff;
+				background-clip: border-box;
+				border-radius: .25rem;
+				color: #000;
+				font-weight: 600;
+				line-height: 1.5;
+				word-wrap: break-word;
+			}
 
-    .main-block__right-container {}
-        .right-container__login-form {
-            display: flex;
-            flex-direction: column;
-            width: 30.875em;
-        }
-            .login-form__inputs-group {
-                display: flex;
-                flex-direction: column;
-            }
-                .inputs-group__item {
-                    width: 100%;
-                    height: 2.25em;
-                    margin-bottom: 0.75em;
-                    padding: 0.375em 0.75em;
-                    border: 1px solid rgba(0,0,0,.525);
-                    border-radius: .25rem;
-                    line-height: 1.5;
-                    color: #495057;
-                    background-color: #fff;
-                }
+			.list-courses__item:hover {
+				color: #0056b3;
+				border-color: #d0d0d0;
+				background-color: #eeeeee;
+			}
 
-            .login-form__button-groups {
-                display: flex;
-                flex-direction: row;
-            }
-                .button-groups__login,
-                .button-groups__signup {
-                    width: 4.375em;
-                    height: 2.375em;
-                    padding: .375rem .75rem;
-                    margin-right: 0.75em;  
-                    border: 1px solid transparent;
-                    border-radius: .25rem;
-                    font-size: 16px;
-                    color: #fff;    
-                    background-color: #007bff;
-                    border-color: #007bff;
-                    cursor: pointer;
-                    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;        
-                }
+	.main-block__right-container {
+		width: 100%;
+		margin-left: 0.75em;
+	}
+		.right-container__login-form {
+			display: flex;
+			flex-direction: column;
+			width: 30.875em;
+		}
+			.login-form__inputs-group {
+				display: flex;
+				flex-direction: column;
+			}
+				.inputs-group__item {
+					width: 100%;
+					height: 2.25em;
+					margin-bottom: 0.75em;
+					padding: 0.375em 0.75em;
+					border: 1px solid rgba(0,0,0,.525);
+					border-radius: .25rem;
+					line-height: 1.5;
+					color: #495057;
+					background-color: #fff;
+				}
 
-                .button-groups__signup {
-                    width: 6.438em;
-                    color: #007bff;
-                    background-color: transparent;
-                    background-image: none;
-                    border-color: #007bff;
-                }
-                
-                .button-groups__login:hover {
-                    color: #fff;
-                    background-color: #0069d9;
-                    border-color: #0062cc;
-                }
+			.login-form__button-groups {
+				display: flex;
+				flex-direction: row;
+			}
+				.button-groups__login,
+				.button-groups__signup {
+					width: 4.375em;
+					height: 2.375em;
+					padding: .375rem .75rem;
+					margin-right: 0.75em;  
+					border: 1px solid transparent;
+					border-radius: .25rem;
+					font-size: 16px;
+					color: #fff;    
+					background-color: #007bff;
+					border-color: #007bff;
+					cursor: pointer;
+					transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;        
+				}
 
-                .button-groups__signup:hover {
-                    color: #fff;
-                    background-color: #007bff;
-                    border-color: #007bff;
-                }
+				.button-groups__signup {
+					width: 6.438em;
+					color: #007bff;
+					background-color: transparent;
+					background-image: none;
+					border-color: #007bff;
+				}
+				
+				.button-groups__login:hover {
+					color: #fff;
+					background-color: #0069d9;
+					border-color: #0062cc;
+				}
+
+				.button-groups__signup:hover {
+					color: #fff;
+					background-color: #007bff;
+					border-color: #007bff;
+				}
+
+
+
+		.right-container__account-page {
+			display: flex;
+			flex-direction: row;
+		    align-items: baseline;	
+		}
+			.account-page__text-block {}
+				.account-page__logout-btn {
+					width: 8em;
+					height: 2.3em;
+					padding: 0.3em 0em;
+					margin-left: 0.75em;
+					background-color: #fff;
+					border: 1px solid rgba(0,0,0,.625);
+					border-radius: .25rem;
+					line-height: 1.5;
+					color: #000;
+					font-size: 16px;
+					font-weight: 600;
+					cursor: pointer;
+				}
