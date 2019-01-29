@@ -12,10 +12,6 @@ class NewCourse extends React.Component {
         super(props);
         this.state = {title: ""}
     }
-    //
-    // componentDidUpdate() {
-    //     this.setState({title: "Test title"});
-    // }
 
     render() {
         const {savePageData, fetchCourseData} = this.props.userAction;
@@ -23,9 +19,11 @@ class NewCourse extends React.Component {
         return (
             <div>
                 <Header />
-                <div className = "container-fluid" >
-                    <div className = "row">
-                        <NewSidebar />
+                <div className = "course-block">
+                    <div className = "course-block__left-container">
+                        <NewSidebar/>
+                    </div>
+                    <div className={"course-block__right-container"}>
                         <NewCourseContent fetchCourseData={fetchCourseData} courseData={courseData} pathParams = {this.props.match.params} title={this.state.title} savePageData={savePageData}/>
                     </div>
                 </div>
