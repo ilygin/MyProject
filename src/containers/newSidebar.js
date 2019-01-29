@@ -39,7 +39,7 @@ class NewSidebar extends React.Component {
 
     render() {
         let newSidebar = this.state.items.map( (item, index) => {
-            let liClassName = (item.type === "unit"||item.type === "titlePage") ? ("list-group-item list-group-item-action") : ("sectionPadding list-group-item list-group-item-action");
+            let liClassName = (item.type === "unit"||item.type === "titlePage") ? ("sidebar__list-item") : ("list-item-padding sidebar__list-item");
             return (
                 <li>
                     <Link to = {index===0 ? "/createNewCourse/6/"+ item.type +"/0" :"/createNewCourse/6/" + item.type +"/" + index}>
@@ -48,12 +48,12 @@ class NewSidebar extends React.Component {
                          </li>
                     </Link>
                     {item.active ?
-                        (<div className="mx-2 sidebar-button-container">
-                            <button onClick={this.onButtonAdd.bind(this, "unit")} type="button" className="btn btn-outline-secondary sidebar-button">
-                                + Глава
+                        (<div className="sidebar__button-container">
+                            <button onClick={this.onButtonAdd.bind(this, "unit")} type="button" className="button-container__btn">
+                                Добавить главу
                             </button>
-                            <button onClick={this.onButtonAdd.bind(this, "section")} type="button" className="btn btn-outline-secondary sidebar-button">
-                                + Раздел
+                            <button onClick={this.onButtonAdd.bind(this, "section")} type="button" className="button-container__btn">
+                                Добавить раздел
                             </button>
                         </div>) : false}
                 </li>
@@ -61,8 +61,8 @@ class NewSidebar extends React.Component {
         );
 
         return (
-            <div className="col-sm-3 col-md-2 bg-light sidebar">
-                <ul className="list-group list-courses">
+            <div className="sidebar">
+                <ul>
                     {newSidebar}
                 </ul>
             </div>

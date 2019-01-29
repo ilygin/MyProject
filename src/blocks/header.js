@@ -6,11 +6,9 @@ class Header extends React.Component {
         const titleCourse = "";
         return (
             <header className="header-block">
-                <div className="grid-width">
-                    <Link to='/'>
-                        <p className="header-block__logo">WebLib</p>
-                    </Link>
-                </div>
+                <Link to='/'>
+                    <p className="header-block__logo">WebLib</p>
+                </Link>
             </header>
         )
     }
