@@ -1,10 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-//import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-quill/dist/quill.snow.css';
 import "react-quill/dist/quill.bubble.css";
-//import 'prismjs/themes/prism.css';
+
 import './newStyle.css';
 
 import mainPage from './containers/mainPage';
