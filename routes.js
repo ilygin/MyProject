@@ -108,7 +108,6 @@ module.exports = function(app, knex, session){
         }
     });
     app.get('/api/loadCourseData/:idCourse.json', async (req, res)=>{
-        console.log(req);
         const data = await knex
             .select().from('CourseContent');
         res.send(data);

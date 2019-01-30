@@ -1,7 +1,7 @@
 export const REQUEST_COURSE = 'REQUEST_COURSE';
 export const RECEIVE_COURSE = 'RECEIVE_COURSE';
-//const URL = "http://77.222.54.255";
-/* for dev mode*/
+const URL = "http://77.222.54.255";
+/* for dev mode
 const URL = "http://localhost:3000";
 /**/
 export function requestCourses() {
