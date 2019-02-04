@@ -31,21 +31,13 @@ class NewCoursePage extends React.Component {
 			this.props.pathParams.typePage === "section" ?  "Название раздела:" : "Название главы:";
 
 		return (
-			<div className="col-sm-9 col-sm-offset-3 col-md-8 mt-2 offset-md-1">
-				<div className="form-group">
-					<label className="control-label" htmlFor="inputDefault">
-						<h3>{title}</h3>
-					</label>
-					<input type="text" className="form-control titleCourse" id="inputDefault" placeholder={this.props.title}/>
+			<div className={"course-block__right-container"}>
+				<div className="right-container__title-page">
+					<input autocomplete="off" type="text" className="form-control titleCourse" id="inputDefault" placeholder={title}/>
+					<button onClick={this.onSavePageContent} className="title-page__btn-save">Сохранить изменения</button>
 				</div>
-				<div>
-					<h3>Содержание курса:  </h3>
-				</div>
-				<div>
+				<div className={"right-container__editor-block"}>
 					<DraftEditor />
-				</div>
-				<div>
-					<button onClick={this.onSavePageContent} className="btn btn-primary">Сохранить страницу</button>
 				</div>
 			</div>
 		)

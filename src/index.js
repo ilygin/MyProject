@@ -5,7 +5,7 @@ import 'react-quill/dist/quill.snow.css';
 import "react-quill/dist/quill.bubble.css";
 
 import './newStyle.css';
-
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import mainPage from './containers/mainPage';
 import newCourse from './containers/newCourse';
 import AccountPage from './containers/accountPage';
