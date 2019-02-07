@@ -1,11 +1,15 @@
 import React from 'react';
-import DraftEditor from './editorContainer';
+import { EditorState, convertToRaw } from 'draft-js';
+import { Editor } from 'react-draft-wysiwyg';
 
 class NewCoursePage extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {};
+		this.state = {
+			editorState: EditorState.createEmpty(),
+		};
 		this.onSavePageContent = this.onSavePageContent.bind(this);
+		this.onEditorStateChange = this.onEditorStateChange.bind(this);
 	}
 
 	async componentDidMount() {
@@ -19,14 +23,23 @@ class NewCoursePage extends React.Component {
 	onSavePageContent(e) {
 		e.preventDefault();
 		let title = document.querySelector(".titleCourse").value;
+		let convertToRawEditorData = JSON.stringify(convertToRaw(this.state.editorState.getCurrentContent()));
+		debugger;
 		try {
-			this.props.savePageData(title, this.state.text, this.props.pathParams.courseId, this.props.pathParams.pageNumber);
+			this.props.savePageData(title, convertToRawEditorData, this.props.pathParams.courseId, this.props.pathParams.pageNumber);
 		}catch (e) {
 			console.log(e);
 		}
 	}
 
+	onEditorStateChange(editorState) {
+		this.setState({
+			editorState,
+		});
+	}
+
 	render() {
+		const { editorState } = this.state;
 		let title = this.props.pathParams.typePage === "titlePage" ? "Название курса:" :
 			this.props.pathParams.typePage === "section" ?  "Название раздела:" : "Название главы:";
 
@@ -37,10 +50,16 @@ class NewCoursePage extends React.Component {
 					<button onClick={this.onSavePageContent} className="title-page__btn-save">Сохранить изменения</button>
 				</div>
 				<div className={"right-container__editor-block"}>
-					<DraftEditor />
+					<Editor
+						editorState={editorState}
+						wrapperClassName="demo-wrapper"
+						editorClassName="demo-editor"
+						onEditorStateChange={this.onEditorStateChange}
+					/>
 				</div>
 			</div>
 		)
 	}
 }
+
 export default NewCoursePage;

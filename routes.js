@@ -99,7 +99,8 @@ module.exports = function(app, knex, session){
                     updatedBy: req.session.user.id,
                     pageContent: req.body.content,
                     courseId: req.body.courseId,
-                    numberPage: req.body.pageNumber
+                    numberPage: req.body.pageNumber,
+                    title: req.body.title
                 });
             res.status(200).send({status: "success"});
         }catch (e) {

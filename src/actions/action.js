@@ -246,7 +246,7 @@ export function statusSavingPageError(msg) {
 export function savePageData(title, content, courseId, pageNumber) {
     return function (dispatch) {
         dispatch(postPage());
-        const savePageData = async(title, content) => {
+        const savePageData = async(title, content, courseId, pageNumber) => {
             try {
                 let data = await fetch(`${URL}/api/newCourse/savePageData`, {
                     method: 'post',
@@ -263,7 +263,6 @@ export function savePageData(title, content, courseId, pageNumber) {
                     })
                 });
                 let resultJson = await data.json();
-                console.log(`resultJson = ${resultJson}`);
                 if (resultJson === 'success') {
                     dispatch(statusSavingPageSuccess());
                 } else {
