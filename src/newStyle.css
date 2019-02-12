@@ -51,7 +51,7 @@ h3 {
 	align-items: center;
 	height: 2.500em;
 	width: 100%;
-    padding-left: 1em;
+	padding-left: 1em;
 	background-color: #343a40;
 }
 	.header-block__logo {
@@ -201,7 +201,7 @@ h3 {
 .right-container__account-page {
 	display: flex;
 	flex-direction: row;
-    align-items: baseline;	
+	align-items: baseline;	
 }
 
 .account-page__logout-btn {
@@ -228,13 +228,13 @@ h3 {
 .sidebar {
 	display: flex;
 	flex-direction: row;
-    position: sticky !important;
-    top: 40px;
-    height: calc(100vh - 40px);
-    width: 20em;
-    padding: 0 !important;
-    overflow-y: scroll;
-    overflow-x: hidden;
+	position: sticky !important;
+	top: 40px;
+	height: calc(100vh - 40px);
+	width: 20em;
+	padding: 0 !important;
+	overflow-y: scroll;
+	overflow-x: hidden;
 	background-color: #f8f9fa;
 }
 
@@ -245,9 +245,9 @@ h3 {
 .sidebar__list-item {
 	background: #fff;
 	padding: 0.75em 1.25em;
-    border-top-left-radius: .25em;
-    border-top-right-radius: .25em;
-    border: 1px solid rgba(0,0,0,.125);
+	border-top-left-radius: .25em;
+	border-top-right-radius: .25em;
+	border: 1px solid rgba(0,0,0,.125);
 }
 
 .sidebar__list-item:hover {
@@ -259,29 +259,73 @@ h3 {
 }
 
 .sidebar__button-container {
-    display: flex;
-    flex-direction: row;
+	display: flex;
+	flex-direction: row;
 }
 
-.button-container__btn {
+.button-container__btn,
+.title-page__btn-save {
 	background-color: transparent;
-    width: 100%;
-    padding: .375rem .75rem;
-    border: 1px solid;
-    border-color: #6c757d;
-    border-radius: .25rem;
-    line-height: 1.5;
-    white-space: nowrap;
-    vertical-align: middle;
-    text-align: center;
-    font-size: 1rem;
-    font-weight: 400;
-    color: #6c757d;
-    cursor: pointer;
+	width: 100%;
+	padding: .375rem .75rem;
+	border: 1px solid;
+	border-color: #6c757d;
+	border-radius: .25rem;
+	line-height: 1.5;
+	white-space: nowrap;
+	vertical-align: middle;
+	text-align: center;
+	font-size: 1rem;
+	font-weight: 400;
+	color: #6c757d;
+	cursor: pointer;
 }
 
 .button-container__btn:hover {
-    color: #fff;
-    background-color: #6c757d;
-    border-color: #6c757d;
+	color: #fff;
+	background-color: #6c757d;
+	border-color: #6c757d;
+}
+
+.course-block__right-container {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+
+.title-page__btn-save {
+	width: 14.55em;
+	border: 1px solid transparent;
+	border-radius: .25rem;
+	font-size: 16px;    
+	background-color: transparent;
+	background-image: none;
+	border-color: #007bff;
+	cursor: pointer;
+	transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+	color: #007bff;	
+}
+
+.title-page__btn-save:hover {
+	color: #fff;
+	background-color: #0069d9;
+	border-color: #0062cc;
+}
+
+.right-container__title-page {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	height: 44px;
+}
+
+.right-container__title-page > input {
+	width: 100%;
+	padding-left: 1em;
+    font-weight: 600;
+    font-size: 24px;
+}
+
+.button-groups__message {
+	width: 15em;
 }

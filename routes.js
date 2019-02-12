@@ -20,9 +20,14 @@ module.exports = function(app, knex, session){
     });
 
     app.post('/api/checkEmail', async (req, res)=> {
-        const data = await knex
-            .count("id").from("Users").where({email: req.body.email});
-        res.send(data);
+        try {
+            const data = await knex
+                .count("id").from("Users")
+                .where({email: req.body.email});
+            res.send(data);
+        }catch(e) {
+            res.send(e);
+        }
     });
 
     function checkLoginUser(req, res, next) {
@@ -99,7 +104,8 @@ module.exports = function(app, knex, session){
                     updatedBy: req.session.user.id,
                     pageContent: req.body.content,
                     courseId: req.body.courseId,
-                    numberPage: req.body.pageNumber
+                    numberPage: req.body.pageNumber,
+                    title: req.body.title
                 });
             res.status(200).send({status: "success"});
         }catch (e) {
