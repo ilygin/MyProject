@@ -20,9 +20,14 @@ module.exports = function(app, knex, session){
     });
 
     app.post('/api/checkEmail', async (req, res)=> {
-        const data = await knex
-            .count("id").from("Users").where({email: req.body.email});
-        res.send(data);
+        try {
+            const data = await knex
+                .count("id").from("Users")
+                .where({email: req.body.email});
+            res.send(data);
+        }catch(e) {
+            res.send(e);
+        }
     });
 
     function checkLoginUser(req, res, next) {

@@ -1,9 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import 'react-quill/dist/quill.snow.css';
-import "react-quill/dist/quill.bubble.css";
-
 import './newStyle.css';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import mainPage from './containers/mainPage';
