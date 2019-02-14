@@ -4,6 +4,7 @@ import ReactDOM from "react-dom";
 import './newStyle.css';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import mainPage from './containers/mainPage';
+import CoursePage from './containers/CoursePage';
 import newCourse from './containers/newCourse';
 import AccountPage from './containers/accountPage';
 import ProtectRouter from './containers/privateRoute';
@@ -19,6 +20,7 @@ ReactDOM.render(
         <BrowserRouter>
             <Switch>
                 <Route exact path='/' component={mainPage}/>
+                <Route path={'/course/:courseId/:pageNumber'} component={CoursePage}/>
                 <Route path={'/createNewCourse/:courseId/:typePage/:pageNumber'} component={newCourse}/>
                 <ProtectRouter path='/account' component={AccountPage}/>
             </Switch>
