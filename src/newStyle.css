@@ -319,13 +319,21 @@ h3 {
 	height: 44px;
 }
 
-.right-container__title-page > input {
+.right-container__title-page > input,
+.titleCourseView {
 	width: 100%;
-	padding-left: 1em;
     font-weight: 600;
     font-size: 24px;
 }
 
+.right-container__title-page > input{
+	padding-left: 1em;
+}
+
 .button-groups__message {
 	width: 15em;
+}
+
+.right-container__course-block {
+	padding: 0 10em 0 5em;
 }

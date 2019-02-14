@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from './../blocks/header';
 import Sidebar from "./sidebar";
-
+import CourseContent from "./courseContent";
 import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
 import * as userAction from "../actions/action";
@@ -20,6 +20,7 @@ class Course extends React.Component {
 				<Header />
 				<div className = "course-block">
 					<Sidebar />
+					<CourseContent />
 				</div>
 			</div>
 		)

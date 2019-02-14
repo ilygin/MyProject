@@ -46,7 +46,7 @@ class NewCoursePage extends React.Component {
 		return (
 			<div className={"course-block__right-container"}>
 				<div className="right-container__title-page">
-					<input autocomplete="off" type="text" className="form-control titleCourse" id="inputDefault" placeholder={title}/>
+					<input autocomplete="off" type="text" id="inputDefault" placeholder={title}/>
 					<button onClick={this.onSavePageContent} className="title-page__btn-save">Сохранить изменения</button>
 				</div>
 				<div className={"right-container__editor-block"}>
