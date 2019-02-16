@@ -116,10 +116,9 @@ module.exports = function(app, knex, session){
 
     app.get('/api/loadCourseData/:idCourse', async (req, res)=>{
         try{
-            console.log(req.body)
             const data = await knex
                 .select().from('CourseContent')
-                .where({courseId: req.body.idCourse});
+                .where({courseId: req.params.idCourse});
             res.send(data);
         }catch (e) {
             console.log(e);
