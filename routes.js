@@ -113,10 +113,18 @@ module.exports = function(app, knex, session){
             res.status(503).send({status: "error", msg: e});
         }
     });
-    app.get('/api/loadCourseData/:idCourse.json', async (req, res)=>{
-        const data = await knex
-            .select().from('CourseContent');
-        res.send(data);
+
+    app.get('/api/loadCourseData/:idCourse', async (req, res)=>{
+        try{
+            console.log(req.body)
+            const data = await knex
+                .select().from('CourseContent')
+                .where({courseId: req.body.idCourse});
+            res.send(data);
+        }catch (e) {
+            console.log(e);
+            res.status(503).send({status: "error", msg: e});
+        }
     });
 
     app.get("*", (req, res) => {

@@ -2,24 +2,28 @@ import React from 'react';
 import { EditorState, convertFromRaw, draftToHtml } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
 
-const content = {"blocks":[{"key":"cedak","text":"Тут будет отображаться курс","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}};
-
 class CourseContent extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {
-			editorState: ""
-		};
+		this.state = {};
 
 	}
 
 
 	render() {
+		let title = "";
+		var content;
+
+		if (this.props.courseData.courseDataItems[this.props.pageNumber-1]) {
+			title = this.props.courseData.courseDataItems[this.props.pageNumber-1].title;
+			content = this.props.courseData.courseDataItems[this.props.pageNumber-1].pageContent;
+		}
+			console.log(content)
 		return (
 			<div className={"course-block__right-container"}>
 				<div className={"right-container__course-block"}>
 					<div className={"titleCourseView"}>
-						<h2>Заголовок</h2>
+						<h2>{title}</h2>
 					</div>
 				      <Editor
 				      	toolbarHidden

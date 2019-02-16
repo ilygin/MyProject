@@ -4,32 +4,15 @@ import { Link } from 'react-router-dom';
 class Sidebar extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {
-			items: [
-				{
-					courseId: 1,
-					pageId: 1,
-					title: "Первая страница"
-				},
-				{
-					courseId: 1,
-					pageId: 2,
-					title: "Вторая страница"
-				},
-				{
-					courseId: 1,
-					pageId: 3,
-					title: "Третья странциа"
-				}
-			]
-		};
+		this.state = {};
 	}
 
 	render() {
-		let sidebar = this.state.items.map( (item, index) => {
+		let sidebar = this.props.sidebarList.map( (item, index) => {
+			index++;
 			return (
 				<li>
-					<Link to = {"/course/"+ item.courseId + item.pageId}>
+					<Link to = {"/course/"+ item.courseId +"/"+ index}>
 						<li key={"pagId" + index} className={"sidebar__list-item"}>
 							{item.title}
 						</li>
