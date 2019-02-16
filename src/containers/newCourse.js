@@ -23,9 +23,7 @@ class NewCourse extends React.Component {
                     <div className = "course-block__left-container">
                         <NewSidebar/>
                     </div>
-                    <div className={"course-block__right-container"}>
-                        <NewCourseContent fetchCourseData={fetchCourseData} courseData={courseData} pathParams = {this.props.match.params} title={this.state.title} savePageData={savePageData}/>
-                    </div>
+                    <NewCourseContent fetchCourseData={fetchCourseData} courseData={courseData} pathParams = {this.props.match.params} title={this.state.title} savePageData={savePageData}/>
                 </div>
             </div>
         )
