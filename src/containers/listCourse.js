@@ -38,7 +38,6 @@ class ListCourses extends React.Component {
 		);
 		
 		const {isAuth} = this.props;
-		console.log(this.props);
 		const buttonCreateCourse =  isAuth ? (
 			<Link to={"/createNewCourse/" + this.state.lastCourseId + "/titlePage/0"}>
 				<button className={"search-block__button"} type="submit">Создать курс</button>

@@ -302,10 +302,10 @@ export function fetchCourseData(idCourse) {
 	return function (dispatch) {
 		dispatch(requestCoursesData());
 		const request = async (idCourse) => {
-			const response = await fetch(`${URL}/api/loadCourseData/${idCourse}.json`);
+			console.log(`idCourse: ${idCourse}`)
+			const response = await fetch(`${URL}/api/loadCourseData/${idCourse}`);
 			try {
 				const json = await response.json();
-				console.log(json);
 				dispatch(receiveCoursesData(json));
 			} catch (e) {
 				console.log(e);
