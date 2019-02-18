@@ -23,7 +23,7 @@ class Course extends React.Component {
 	render() {
 		const {savePageData, fetchCourseData} = this.props.userAction;
 		const {courseData} = this.props;
-	
+
 		let sidebarList = courseData.courseDataItems.map((item)=>{
 			return {
 				title: item.title,
@@ -33,10 +33,7 @@ class Course extends React.Component {
 			}
 		});
 
-		sidebarList.sort(function(a, b){
-			return a.numberPage - b.numberPage
-		})
-
+		console.log(sidebarList);
 		return (
 			<div>
 				<Header />
