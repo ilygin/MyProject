@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from './../blocks/header';
-import Sidebar from "./sidebar";
-import CourseContent from "./courseContent";
+import Sidebar from "../blocks/sidebar";
+import CourseContent from "../blocks/courseContent";
 import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
 import * as userAction from "../actions/action";
@@ -12,7 +12,6 @@ class Course extends React.Component {
 		this.state = {title: ""}
 	}
 	async componentDidMount() {
-		console.log(this.props)
 		try {
 			this.props.userAction.fetchCourseData(this.props.match.params.courseId);
 		}catch(e) {
@@ -32,10 +31,6 @@ class Course extends React.Component {
 				numberPage: item.numberPage
 			}
 		});
-
-		sidebarList.sort(function(a, b){
-			return a.numberPage - b.numberPage
-		})
 
 		return (
 			<div>

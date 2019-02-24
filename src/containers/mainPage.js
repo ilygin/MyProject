@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from '../blocks/header';
-import LoginForm from '../blocks/mainPage/loginForm';
+import LoginForm from '../blocks/main/loginForm';
 import ListCourses from "../containers/listCourse";
 
 import { bindActionCreators } from 'redux'

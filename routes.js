@@ -118,10 +118,11 @@ module.exports = function(app, knex, session){
         try{
             const data = await knex
                 .select().from('CourseContent')
-                .where({courseId: req.params.idCourse});
+                .where({courseId: req.params.idCourse})
+                .orderBy('numberPage');
+            console.log(data);
             res.send(data);
         }catch (e) {
-            console.log(e);
             res.status(503).send({status: "error", msg: e});
         }
     });

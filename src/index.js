@@ -1,11 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import './newStyle.css';
+import './style.css';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import mainPage from './containers/mainPage';
 import CoursePage from './containers/CoursePage';
-import newCourse from './containers/newCourse';
+import newCourse from './containers/editCoursePage';
 import AccountPage from './containers/accountPage';
 import ProtectRouter from './containers/privateRoute';
 

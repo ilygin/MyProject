@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../blocks/header';
-import NewSidebar from "../blocks/newSidebar";
-import NewCourseContent from "../blocks/newCourseContent";
+import NewSidebar from "../blocks/edit/editSidebar";
+import NewCourseContent from "../blocks/edit/editCourseContent";
 
 import {bindActionCreators} from "redux";
 import {connect} from "react-redux";

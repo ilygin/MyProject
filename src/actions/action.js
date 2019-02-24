@@ -1,7 +1,7 @@
 export const REQUEST_COURSE = 'REQUEST_COURSE';
 export const RECEIVE_COURSE = 'RECEIVE_COURSE';
-const URL = "http://77.222.54.255";
-/* for dev mode
+//const URL = "http://77.222.54.255";
+/* for dev mode*/
 const URL = "http://localhost:3000";
 /**/
 export function requestCourses() {
@@ -60,7 +60,6 @@ export function statusError(msg) {
 export function signUpUser(email, password) {
 	return function (dispatch) {
 		dispatch(postUserData());
-		console.log(!email , !password);
 		if (!email || !password) {
 			dispatch(statusError("Заполните поля email и пароль"));
 			return("Заполните поля email и пароль");
@@ -302,7 +301,6 @@ export function fetchCourseData(idCourse) {
 	return function (dispatch) {
 		dispatch(requestCoursesData());
 		const request = async (idCourse) => {
-			console.log(`idCourse: ${idCourse}`)
 			const response = await fetch(`${URL}/api/loadCourseData/${idCourse}`);
 			try {
 				const json = await response.json();

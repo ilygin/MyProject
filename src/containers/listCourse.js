@@ -1,5 +1,5 @@
 import React from 'react';
-import Course from '../blocks/mainPage/course';
+import Course from '../blocks/main/course';
 import {connect} from "react-redux";
 import { Link } from 'react-router-dom';
 
