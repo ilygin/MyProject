@@ -24,7 +24,7 @@ class NewCoursePage extends React.Component {
 		e.preventDefault();
 		let title = document.querySelector(".titleCourse").value;
 		let convertToRawEditorData = JSON.stringify(convertToRaw(this.state.editorState.getCurrentContent()));
-		debugger;
+
 		try {
 			this.props.savePageData(title, convertToRawEditorData, this.props.pathParams.courseId, this.props.pathParams.pageNumber);
 		}catch (e) {

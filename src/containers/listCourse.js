@@ -39,7 +39,7 @@ class ListCourses extends React.Component {
 		
 		const {isAuth} = this.props;
 		const buttonCreateCourse =  isAuth ? (
-			<Link to={"/createNewCourse/" + this.state.lastCourseId + "/titlePage/0"}>
+			<Link to={"/editCourse/" + this.state.lastCourseId + "/titlePage/0"}>
 				<button className={"search-block__button"} type="submit">Создать курс</button>
 			</Link>
 		) : false;
