@@ -1,11 +1,11 @@
-import React from "react";
+    import React from "react";
 import ReactDOM from "react-dom";
 
 import './style.css';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import mainPage from './containers/mainPage';
 import CoursePage from './containers/CoursePage';
-import newCourse from './containers/editCoursePage';
+import EditCourse from './containers/editCoursePage';
 import AccountPage from './containers/accountPage';
 import ProtectRouter from './containers/privateRoute';
 
@@ -21,7 +21,7 @@ ReactDOM.render(
             <Switch>
                 <Route exact path='/' component={mainPage}/>
                 <Route path={'/course/:courseId/:pageNumber'} component={CoursePage}/>
-                <Route path={'/createNewCourse/:courseId/:typePage/:pageNumber'} component={newCourse}/>
+                <Route path={'/editCourse/:courseId/:typePage/:pageNumber'} component={EditCourse}/>
                 <ProtectRouter path='/account' component={AccountPage}/>
             </Switch>
         </BrowserRouter>

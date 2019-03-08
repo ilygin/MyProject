@@ -253,7 +253,7 @@ export function savePageData(title, content, courseId, pageNumber) {
 		dispatch(postPage());
 		const savePageData = async(title, content, courseId, pageNumber) => {
 			try {
-				let data = await fetch(`${URL}/api/newCourse/savePageData`, {
+				let data = await fetch(`${URL}/api/editCourse/savePageData`, {
 					method: 'post',
 					credentials: 'include',
 					headers: {
