@@ -1,7 +1,10 @@
     import React from "react";
 import ReactDOM from "react-dom";
 
-import './style.css';
+import './style/style.css';
+import './style/coursePage.css';
+import './style/mainPage.css';
+
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import mainPage from './containers/mainPage';
 import CoursePage from './containers/CoursePage';

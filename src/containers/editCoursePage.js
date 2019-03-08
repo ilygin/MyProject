@@ -10,36 +10,26 @@ import * as userAction from "../actions/action";
 class EditCourse extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {title: ""}
-	}
-
-	async componentDidMount() {
-		try {
-			this.props.userAction.fetchCourseData(this.props.match.params.courseId);
-		}catch(e) {
-			console.log('Error: ', e);
-		}
+		this.state = {title: "", sidebarList: []}
 	}
 
 	render() {
 		const {savePageData, fetchCourseData} = this.props.userAction;
 		const {courseData} = this.props;
 
-		let sidebarList = courseData.courseDataItems.map((item)=>{
-			return {
-				title: item.title,
-				isUnit: !!item.isUnit,
-				courseId: item.courseId,
-				numberPage: item.numberPage
-			}
-		});
-
+		const activeItemId = this.props.match.params.pageNumber;
+		const courseId = this.props.match.params.courseId;
+		
 		return (
 			<div>
 				<Header />
 				<div className = "course-block">
 					<div className = "course-block__left-container">
-						<NewSidebar sidebarList = {sidebarList}/>
+						<NewSidebar fetchCourseData= {fetchCourseData}
+								activeItem = {activeItemId}
+								courseId = {courseId}
+								items = {courseData}
+						/>
 					</div>
 					<NewCourseContent
 						courseData = {courseData}

@@ -5,10 +5,48 @@ class NewSidebar extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			items:[{title: "Титульный лист", type: "titlePage", active: true}],
-			activeItem: 0
+			
 		};
 	}
+	async componentDidMount() {
+		try {
+			await this.props.fetchCourseData(this.props.courseId);
+			console.log(this.props)
+			let sidebarList = [];
+			sidebarList = this.props.items.courseDataItems.map((item)=>{
+				return {
+					title: item.title,
+					isUnit: !!item.isUnit,
+					courseId: item.courseId,
+					numberPage: item.numberPage,
+					isActive: false
+				}
+			});
+			if (sidebarList !== undefined && sidebarList[0] !== undefined) {
+				sidebarList[this.props.activeItem].isActive = true;
+			}
+
+			if (sidebarList[0] === undefined) {
+				this.setState({
+					items: [{
+						title: "Титульный лист",
+						type: "titlePage",
+						isActive: true,
+						numberPage: 0,
+						courseId: this.props.courseId,
+						isUnit: false,
+
+					}],
+					activeItem: 0
+				});
+			}else {
+				this.setState({sidebarList})
+			}
+		}catch(e) {
+			console.log('Error: ', e);
+		}
+	}
+
 	onButtonAdd(type) {
 		let currentItems = this.state.items;
 		let activeItemIndex = this.state.activeItem;
@@ -38,22 +76,43 @@ class NewSidebar extends React.Component {
 	}
 
 	render() {
+		console.log('_________________');
+		console.log(this.state);
+		console.log('_________________');
+
 //		debugger;
-		let sidebar = this.props.sidebarList[0] === undefined ?
-						this.state.items :
-						this.props.sidebarList;
-		let sidebarList = sidebar.map( (item, index) => {
-			index++;
-			return (
-				<li>
-					<Link to = {"/course/"+ item.courseId +"/"+ index}>
-						<li key={"pagId" + index} className={"sidebar__list-item"}>
-							{item.title}
-						</li>
-					</Link>
-				</li>
-			)
-		});
+		// let sidebarList = this.state.items.map( (item, index) => {
+		// 	index++;
+		// 	let type = item.isUnit ? "unit" :
+		// 				item.numberPage === 0 ? "titlePage" : "section";
+		// 	return (
+		// 		<li>
+		// 			<Link to = { "/editCourse/"+ item.courseId +"/"+ type + "/" + item.numberPage }>
+		// 				<li key={"pagId" + index} className={"sidebar__list-item"}>
+		// 					{item.title}
+		// 				</li>
+		// 			</Link>
+		// 			{
+		// 				item.isActive ?
+		// 					(<div className="sidebar__button-container">
+		// 						<button onClick={this.onButtonAdd.bind(this, "unit")} 
+		// 							  type="button" 
+		// 							  className="button-container__btn">
+									
+		// 							Добавить главу
+		// 						</button>
+		// 						<button onClick={this.onButtonAdd.bind(this, "section")} 
+		// 							  type="button" 
+		// 							  className="button-container__btn">
+									
+		// 							Добавить раздел
+		// 						</button>
+		// 					</div>) :
+		// 					false
+		// 			}
+		// 		</li>
+		// 	)
+		// });
 
 		// let newSidebar = this.state.items.map( (item, index) => {
 
@@ -94,7 +153,7 @@ class NewSidebar extends React.Component {
 		return (
 			<div className="sidebar">
 				<ul>
-					{sidebarList}
+					
 				</ul>
 			</div>
 		)
