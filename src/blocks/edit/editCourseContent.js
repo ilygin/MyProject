@@ -12,14 +12,6 @@ class NewCoursePage extends React.Component {
 		this.onEditorStateChange = this.onEditorStateChange.bind(this);
 	}
 
-	async componentDidMount() {
-		try {
-			await this.props.fetchCourseData(this.props.pathParams.courseId);
-		}catch (e) {
-			console.log(e);
-		}
-	}
-
 	onSavePageContent(e) {
 		e.preventDefault();
 		let title = document.querySelector(".titleCourse").value;
