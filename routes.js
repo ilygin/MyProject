@@ -145,15 +145,30 @@ module.exports = function(app, knex, session){
 
 	});
 
-	app.get('/api/loadCourseData/:idCourse', async (req, res)=>{
+	app.get('/api/loadCourseData/:courseId', async (req, res)=>{
 		try{
 			const data = await knex
 				.select().from('CourseContent')
-				.where({courseId: req.params.idCourse})
+				.where({courseId: req.params.courseId})
 				.orderBy('numberPage');
 			res.send(data);
 		}catch (e) {
 			res.status(503).send({status: "error", msg: e});
+		}
+	});
+
+	app.get('/editCourse/:courseId/:type/:numberPage', async (req, res, next)=>{
+		try{
+			var countNumber = await knex
+				.count().from('CourseContent')
+				.where({courseId: req.params.courseId});
+		}catch (e) {
+			console.log(e)
+		}
+		if(countNumber[0][ 'count(*)']-1 < req.params.numberPage) {
+			res.redirect("/editCourse/"+req.params.courseId+"/titlePage/0");
+		}else {
+			next();
 		}
 	});
 
