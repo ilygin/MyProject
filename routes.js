@@ -44,8 +44,12 @@ module.exports = function(app, knex, session){
 			const currentDate = new Date().toUTCString();
 			try {
 				await knex('Users')
-					.insert({email: req.body.email, password: hashPassport, createdAt: currentDate, updatedAt: currentDate});
-
+					.insert({
+						email: req.body.email,
+						password: hashPassport,
+						createdAt: currentDate,
+						updatedAt: currentDate
+					});
 				res.send({status: "success"});
 			}catch (e) {
 				res.send({status: "error", msg: e});
@@ -59,15 +63,23 @@ module.exports = function(app, knex, session){
 	app.post('/auth/logInUser', async (req, res)=> {
 		try {
 			const match = await knex
-				.select("id", "password").from("Users").where({email: req.body.email});
+				.select("id", "password")
+				.from("Users")
+				.where({email: req.body.email});
 
 			if (match.length === 0) {
-				res.status(401).send({status: "error", msg: "Неверная почта"});
+				res.status(401).send({
+					status: "error",
+					msg: "Неверная почта"
+				});
 			} else {
 				const data = bcrypt.compareSync(req.body.password, match[0].password);
 
 				if (!data) {
-					res.send({status: "error", msg: "Неверный пароль"});
+					res.send({
+						status: "error",
+						msg: "Неверный пароль"
+					});
 				} else {
 					req.session.user = match[0];
 					res.status(200).send({status: "success"});
@@ -165,9 +177,10 @@ module.exports = function(app, knex, session){
 		}catch (e) {
 			console.log(e)
 		}
-		if(countNumber[0][ 'count(*)']-1 < req.params.numberPage) {
+		if(countNumber[0][ 'count(*)'] < req.params.numberPage) {
 			res.redirect("/editCourse/"+req.params.courseId+"/titlePage/0");
 		}else {
+			console.log(`next();`);
 			next();
 		}
 	});
