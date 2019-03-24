@@ -39,7 +39,6 @@ class NewSidebar extends React.Component {
 					numberPage: 0,
 					courseId: this.props.courseId,
 					isUnit: false,
-
 				}],
 				activeItem: 0
 			});
@@ -74,7 +73,7 @@ class NewSidebar extends React.Component {
 
 		updateItems[currentActiveItem].isActive = false;
 		updateItems[updateActiveItem].isActive = true;
-		debugger
+
 		this.setState({
 			items: updateItems,
 			activeItem: updateActiveItem
