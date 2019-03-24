@@ -1,5 +1,5 @@
 import React from 'react';
-import { EditorState, convertToRaw } from 'draft-js';
+import { EditorState, convertToRaw, ContentState, convertFromRaw } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
 
 class NewCoursePage extends React.Component {
@@ -7,9 +7,48 @@ class NewCoursePage extends React.Component {
 		super(props);
 		this.state = {
 			editorState: EditorState.createEmpty(),
+			titlePlaceholder: "",
+			titleValue:""
 		};
 		this.onSavePageContent = this.onSavePageContent.bind(this);
 		this.onEditorStateChange = this.onEditorStateChange.bind(this);
+		this.onChangeTitle = this.onChangeTitle.bind(this);
+	}
+
+	componentDidMount() {	
+		const {typePage} = this.props.pathParams;
+		let titlePlaceholder = this.chooseTitlePage(typePage); 
+		this.setState({titlePlaceholder});
+	}
+
+	componentWillReceiveProps(nextProps) {
+		const {typePage, pageNumber} = nextProps.pathParams;
+		const {courseDataItems} = nextProps.courseData;
+		let newTitle = this.state.titleValue;
+		let editorState;
+		if (courseDataItems !== undefined && courseDataItems[pageNumber] !== undefined) {
+			const {title, pageContent} = courseDataItems[pageNumber];
+			newTitle = title;
+			let content = convertFromRaw(JSON.parse(pageContent));
+			editorState = EditorState.createWithContent(content);
+		}else {
+			newTitle = this.chooseTitlePage(typePage)
+		}
+		this.setState({
+			editorState,
+			titleValue: newTitle 
+		})
+	}
+
+	chooseTitlePage(type) {
+		switch(type){
+			case "titlePage":
+				return "Название курса";
+			case "section":
+				return "Название раздела";
+			default:
+				return "Название главы";
+		}
 	}
 
 	onSavePageContent(e) {
@@ -30,16 +69,25 @@ class NewCoursePage extends React.Component {
 		});
 	}
 
+	onChangeTitle(event) {
+		this.setState({titleValue: event.target.value});
+	}
 	render() {
-		const { editorState } = this.state;
-		let title = this.props.pathParams.typePage === "titlePage" ? "Название курса:" :
-			this.props.pathParams.typePage === "section" ?  "Название раздела:" : "Название главы:";
-
-		return (
+		let { editorState, titlePlaceholder, titleValue } = this.state;
+		return  (
 			<div className={"course-block__right-container"}>
 				<div className="right-container__title-page">
-					<input autocomplete="off" type="text" id="inputDefault" className={"titleCourse"} placeholder={title}/>
-					<button onClick={this.onSavePageContent} className="title-page__btn-save">Сохранить изменения</button>
+					<input  autocomplete = "off"
+							type = "text"
+							id = "inputDefault"
+							onChange={(value) => this.onChangeTitle(value)}
+							className = {"titleCourse"}
+							placeholder = {titlePlaceholder}
+							value = {titleValue}/>
+					<button onClick = {this.onSavePageContent}
+							className = "title-page__btn-save">
+								Сохранить изменения
+					</button>
 				</div>
 				<div className={"right-container__editor-block"}>
 					<Editor
