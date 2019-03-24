@@ -30,12 +30,31 @@ module.exports = function(app, knex, session){
 		}
 	});
 
-	function checkLoginUser(req, res, next) {
+	var checkLoginUser = (req, res, next) => {
 		if (req.session.user) {
 			next();
 		}else {
 			res.redirect("/");
 		}
+	}
+
+	var checkAuthorOrAdmin = async (req, res, next) => {
+		let authorId = -1;
+		try {
+			let authorIdQuery = await knex('Courses')
+							.select('authorId')
+							.where({id: req.params.courseId});
+			authorId = authorIdQuery[0][`authorId`];
+		} catch(e) {
+			console.log(e);
+		}
+		let isUserAutorOrAdmin = req.session.user && (authorId === req.session.user.id || req.session.user.isAdmin);
+		if(isUserAutorOrAdmin) {
+			next();
+		}else {
+			res.redirect("/");
+		}
+		
 	}
 
 	app.post('/auth/signup', async (req, res)=> {
@@ -63,7 +82,7 @@ module.exports = function(app, knex, session){
 	app.post('/auth/logInUser', async (req, res)=> {
 		try {
 			const match = await knex
-				.select("id", "password")
+				.select("id", "password", "isAdmin")
 				.from("Users")
 				.where({email: req.body.email});
 
@@ -169,7 +188,7 @@ module.exports = function(app, knex, session){
 		}
 	});
 
-	app.get('/editCourse/:courseId/:type/:numberPage', async (req, res, next)=>{
+	app.get('/editCourse/:courseId/:type/:numberPage', checkAuthorOrAdmin, async (req, res, next)=>{
 		try{
 			var countNumber = await knex
 				.count().from('CourseContent')
