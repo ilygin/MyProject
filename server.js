@@ -14,7 +14,7 @@ const knex = require('knex')({
     client: 'mysql',
     connection: connectionDb
 });
-
+import {URL} from './const.js';
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -26,5 +26,5 @@ app.use(express.static(path.join(__dirname, 'dist')));
 require('./routes')(app, knex, session);
 
 app.listen(PORT, () => {
-    console.log("==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.", PORT, PORT);
+    console.log(`==> 🌎  Listening on port %s. Visit ${URL}%s/ in your browser.`, PORT, PORT);
 });
