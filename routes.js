@@ -44,11 +44,12 @@ module.exports = function(app, knex, session){
 			let authorIdQuery = await knex('Courses')
 							.select('authorId')
 							.where({id: req.params.courseId});
-			authorId = authorIdQuery[0][`authorId`];
+			authorId = authorIdQuery[0] ? authorIdQuery[0][`authorId`] : -1;
 		} catch(e) {
 			console.log(e);
 		}
 		let isUserAutorOrAdmin = req.session.user && (authorId === req.session.user.id || req.session.user.isAdmin);
+		
 		if(isUserAutorOrAdmin) {
 			next();
 		}else {
@@ -196,10 +197,16 @@ module.exports = function(app, knex, session){
 		}catch (e) {
 			console.log(e)
 		}
+		try{
+			var countCourses = await knex.count()
+								.from('Courses');
+		}catch(e) {
+			console.log(e)
+		}
+		// let courseId = 
 		if(countNumber[0][ 'count(*)'] < req.params.numberPage) {
 			res.redirect("/editCourse/"+req.params.courseId+"/titlePage/0");
 		}else {
-			console.log(`next();`);
 			next();
 		}
 	});
