@@ -38,7 +38,7 @@ module.exports = function(app, knex, session){
 		}
 	}
 
-	var checkAuthorOrAdmin = async (req, res, next) => {
+	var checkAuthorOrAdminOrIsNewCourse = async (req, res, next) => {
 		let authorId = -1;
 		try {
 			let authorIdQuery = await knex('Courses')
@@ -48,9 +48,23 @@ module.exports = function(app, knex, session){
 		} catch(e) {
 			console.log(e);
 		}
+		try {
+			var CountCourseQuery = await knex
+			.count().from("Courses");
+
+		} catch(e) {
+			console.log(e);
+		}
 		let isUserAutorOrAdmin = req.session.user && (authorId === req.session.user.id || req.session.user.isAdmin);
+<<<<<<< HEAD
 		
 		if(isUserAutorOrAdmin) {
+=======
+		let isNewCourse = CountCourseQuery[0][`count(*)`] + 1 == req.params.courseId;
+		let isExistingCourse = CountCourseQuery[0][`count(*)`] >= req.params.courseId;
+		
+		if(isNewCourse || (isUserAutorOrAdmin && isExistingCourse)) {
+>>>>>>> f9194fe2906a4359d4f892827df5eb72f40298e5
 			next();
 		}else {
 			res.redirect("/");
@@ -189,7 +203,7 @@ module.exports = function(app, knex, session){
 		}
 	});
 
-	app.get('/editCourse/:courseId/:type/:numberPage', checkAuthorOrAdmin, async (req, res, next)=>{
+	app.get('/editCourse/:courseId/:type/:numberPage', checkAuthorOrAdminOrIsNewCourse, async (req, res, next)=>{
 		try{
 			var countNumber = await knex
 				.count().from('CourseContent')

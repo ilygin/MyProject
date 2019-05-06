@@ -1,6 +1,10 @@
+import {URL} from './../const';
 export const REQUEST_COURSE = 'REQUEST_COURSE';
 export const RECEIVE_COURSE = 'RECEIVE_COURSE';
+<<<<<<< HEAD
 import {URL} from '../consts';
+=======
+>>>>>>> f9194fe2906a4359d4f892827df5eb72f40298e5
 
 export function requestCourses() {
 	return {

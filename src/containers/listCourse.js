@@ -2,7 +2,11 @@ import React from 'react';
 import Course from '../blocks/main/course';
 import {connect} from "react-redux";
 import { Link } from 'react-router-dom';
+<<<<<<< HEAD
 import {URL} from '../consts';
+=======
+import {URL} from './../const.js';
+>>>>>>> f9194fe2906a4359d4f892827df5eb72f40298e5
 
 class ListCourses extends React.Component {
 	constructor(props) {
