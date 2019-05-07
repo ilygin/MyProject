@@ -56,15 +56,10 @@ module.exports = function(app, knex, session){
 			console.log(e);
 		}
 		let isUserAutorOrAdmin = req.session.user && (authorId === req.session.user.id || req.session.user.isAdmin);
-<<<<<<< HEAD
-		
-		if(isUserAutorOrAdmin) {
-=======
 		let isNewCourse = CountCourseQuery[0][`count(*)`] + 1 == req.params.courseId;
 		let isExistingCourse = CountCourseQuery[0][`count(*)`] >= req.params.courseId;
 		
 		if(isNewCourse || (isUserAutorOrAdmin && isExistingCourse)) {
->>>>>>> f9194fe2906a4359d4f892827df5eb72f40298e5
 			next();
 		}else {
 			res.redirect("/");

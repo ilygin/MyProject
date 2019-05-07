@@ -14,7 +14,7 @@ const knex = require('knex')({
     client: 'mysql',
     connection: connectionDb
 });
-import {URL} from './const.js';
+const URL = "http://localhost:3000";
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
